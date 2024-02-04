@@ -1,5 +1,4 @@
-package DataForge;
-import InterfazDataForge.Interfaz;
+import Interfaz.Interfaz;
 
 public class DataForge {
 
@@ -8,4 +7,5 @@ public class DataForge {
         menPrincipal.setVisible(true);
         menPrincipal.setLocationRelativeTo(null);
     }
+    
 }
