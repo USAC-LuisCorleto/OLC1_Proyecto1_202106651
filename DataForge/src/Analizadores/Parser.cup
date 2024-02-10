@@ -1,0 +1,91 @@
+// ------------  Paquete e importaciones ------------
+package Analizadores;
+
+import java_cup.runtime.*;
+
+
+//------> Codigo para el parser
+//------> Declaracion de variables, funciones y funciones de error
+
+parser code 
+{:
+    public String resultado = ""; 
+
+    public void syntax_error(Symbol s)
+    {
+            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
+    }
+
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
+    {
+            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
+    }
+
+:}
+
+
+//------> Codigo para las acciones gramaticales (no tocar)
+action code
+{:  :}
+
+
+//------> Declaración de terminales
+/*-----PALABRAS RESERVADAS-----*/
+terminal String INICIO_CODIGO;
+terminal String FIN_CODIGO;
+terminal String FIN_DECLARACION;
+terminal String VAR;
+terminal String DOUBLE;
+terminal String CHAR;
+
+/*-----PRÍNCIPAL-----*/
+terminal String ENTERO;
+terminal String DECIMAL;
+terminal String LETRA;
+terminal String ID_VAR;
+terminal String CADENA;
+
+/*-----SÍMBOLOS-----*/
+terminal String DOS_PUNTOS;
+terminal String PUNTO_COMA;
+terminal String MENORQUE;
+terminal String MAYORQUE;
+terminal String GUION;
+
+//------> Declaración de no terminales
+non terminal inicio;
+non terminal lista_instrucciones;
+non terminal instruccion;
+non terminal variable;
+non terminal tipo;
+non terminal expresion;
+
+//------> Definir Simbolo Inicial
+start with inicio; 
+
+
+// ------------>  Producciones  <------------
+
+inicio ::= INICIO_CODIGO lista_instrucciones FIN_CODIGO
+;
+
+lista_instrucciones ::= instruccion
+        | lista_instrucciones instruccion
+;
+
+instruccion ::= variable {: System.out.println("Funciona correctamente"); :}
+;
+
+variable ::= VAR DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_VAR MENORQUE GUION expresion FIN_DECLARACION PUNTO_COMA
+;
+
+tipo ::= DOUBLE
+        | CHAR
+;
+
+expresion ::= ENTERO
+        | DECIMAL
+        | CADENA
+        | variable
+        | ID_VAR
+;

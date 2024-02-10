@@ -1,8 +1,10 @@
 package Interfaz;
 
+import Analizadores.Parser;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringReader;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -65,6 +67,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         botónSiguiente.setText("Siguiente");
 
+        consolaArchivo.setEditable(false);
         consolaArchivo.setColumns(20);
         consolaArchivo.setRows(5);
         jScrollPane2.setViewportView(consolaArchivo);
@@ -167,6 +170,11 @@ public class Interfaz extends javax.swing.JFrame {
         jMenuBar1.add(itemBarPestañas);
 
         itemBarEjecutar.setText("Ejecutar");
+        itemBarEjecutar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemBarEjecutarMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(itemBarEjecutar);
 
         itemBarReportes.setText("Reportes");
@@ -258,6 +266,17 @@ public class Interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menúGuardarActionPerformed
 
+    public static void analizar(String entrada) {
+        try {
+            Analizadores.Lexer lexer = new Analizadores.Lexer(new StringReader(entrada));
+            Analizadores.Parser parser = new Parser(lexer);
+            parser.parse();
+        } catch (Exception e) {
+            System.out.println("Error fatal en compilación de entrada.");
+            System.out.println(e);
+        }
+    }
+
     private void menúEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menúEliminarActionPerformed
         int tabIndex = panelArchivos.getSelectedIndex();
 
@@ -278,6 +297,18 @@ public class Interfaz extends javax.swing.JFrame {
             panelArchivos.remove(tabIndex);
         }
     }//GEN-LAST:event_menúEliminarActionPerformed
+
+    private void itemBarEjecutarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemBarEjecutarMouseClicked
+        int tabIndex = panelArchivos.getSelectedIndex();
+
+        if (tabIndex != -1) {
+            JScrollPane selectedTab = (JScrollPane) panelArchivos.getComponentAt(tabIndex);
+            JTextArea textArea = (JTextArea) selectedTab.getViewport().getView();
+
+            String textoArchivo = textArea.getText();
+            analizar(textoArchivo);
+        }
+    }//GEN-LAST:event_itemBarEjecutarMouseClicked
 
     private boolean verificarCambiosNoGuardados(JTextArea textArea) {
         return textArea.getDocument().getLength() != 0;
