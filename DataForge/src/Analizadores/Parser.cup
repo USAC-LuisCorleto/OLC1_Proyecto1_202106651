@@ -37,13 +37,26 @@ terminal String FIN_DECLARACION;
 terminal String VAR;
 terminal String DOUBLE;
 terminal String CHAR;
+terminal String ARRAY;
+terminal String SUMA;
+terminal String RESTA;
+terminal String MULTIPLICACION;
+terminal String DIVISION;
+terminal String MODULO;
 
 /*-----PRÍNCIPAL-----*/
 terminal String ENTERO;
 terminal String DECIMAL;
 terminal String LETRA;
 terminal String ID_VAR;
+terminal String ID_ARRAY;
 terminal String CADENA;
+
+/*-----CONCATENADORES-----*/
+terminal String CORCHETE_APERTURA;
+terminal String CORCHETE_CIERRE;
+terminal String PARENTESIS_APERTURA;
+terminal String PARENTESIS_CIERRE;
 
 /*-----SÍMBOLOS-----*/
 terminal String DOS_PUNTOS;
@@ -51,14 +64,20 @@ terminal String PUNTO_COMA;
 terminal String MENORQUE;
 terminal String MAYORQUE;
 terminal String GUION;
+terminal String COMA;
 
 //------> Declaración de no terminales
 non terminal inicio;
 non terminal lista_instrucciones;
 non terminal instruccion;
 non terminal variable;
+non terminal array;
 non terminal tipo;
 non terminal expresion;
+non terminal lista_expresiones;
+non terminal operacion_aritmetica;
+non terminal operacion;
+non terminal double_aritmetica;
 
 //------> Definir Simbolo Inicial
 start with inicio; 
@@ -73,10 +92,25 @@ lista_instrucciones ::= instruccion
         | lista_instrucciones instruccion
 ;
 
-instruccion ::= variable {: System.out.println("Funciona correctamente"); :}
+instruccion ::= variable 
+        | array 
+        | operacion_aritmetica 
+;
+
+operacion_aritmetica ::= operacion PARENTESIS_APERTURA expresion COMA expresion PARENTESIS_CIERRE
 ;
 
 variable ::= VAR DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_VAR MENORQUE GUION expresion FIN_DECLARACION PUNTO_COMA
+;
+
+operacion ::= SUMA 
+        | RESTA 
+        | MULTIPLICACION 
+        | DIVISION 
+        | MODULO 
+;
+
+array ::= ARRAY DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_ARRAY MENORQUE GUION CORCHETE_APERTURA lista_expresiones CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA
 ;
 
 tipo ::= DOUBLE
@@ -88,4 +122,9 @@ expresion ::= ENTERO
         | CADENA
         | variable
         | ID_VAR
+        | operacion_aritmetica
+;
+
+lista_expresiones ::= expresion 
+        | lista_expresiones COMA expresion
 ;

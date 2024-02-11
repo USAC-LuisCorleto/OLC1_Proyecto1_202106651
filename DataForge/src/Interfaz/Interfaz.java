@@ -253,15 +253,19 @@ public class Interfaz extends javax.swing.JFrame {
         int resultado = fileChooser.showSaveDialog(this);
         if (resultado == JFileChooser.APPROVE_OPTION) {
             java.io.File selectedFile = fileChooser.getSelectedFile();
+
+            String nombreArchivo = selectedFile.getName();
+            if (!nombreArchivo.endsWith(".df")) {
+                nombreArchivo += ".df";
+                selectedFile = new java.io.File(selectedFile.getParent(), nombreArchivo);
+            }
+
             try {
-                try (
-                        java.io.FileWriter writer = new java.io.FileWriter(selectedFile)) {
+                try (java.io.FileWriter writer = new java.io.FileWriter(selectedFile)) {
                     writer.write(textArea.getText());
                 }
-                String nombreArchivo = selectedFile.getName();
                 panelArchivos.setTitleAt(panelArchivos.getSelectedIndex(), nombreArchivo);
             } catch (IOException ex) {
-
             }
         }
     }//GEN-LAST:event_menúGuardarActionPerformed
