@@ -43,6 +43,14 @@ terminal String RESTA;
 terminal String MULTIPLICACION;
 terminal String DIVISION;
 terminal String MODULO;
+terminal String CONSOLE;
+terminal String IMPRIMIR;
+terminal String MEDIA;
+terminal String MEDIANA;
+terminal String MODA;
+terminal String VARIANZA;
+terminal String MAX;
+terminal String MIN;
 
 /*-----PRÍNCIPAL-----*/
 terminal String ENTERO;
@@ -65,6 +73,7 @@ terminal String MENORQUE;
 terminal String MAYORQUE;
 terminal String GUION;
 terminal String COMA;
+terminal String IGUAL;
 
 //------> Declaración de no terminales
 non terminal inicio;
@@ -78,6 +87,8 @@ non terminal lista_expresiones;
 non terminal operacion_aritmetica;
 non terminal operacion;
 non terminal double_aritmetica;
+non terminal print;
+non terminal operacion_estadistica;
 
 //------> Definir Simbolo Inicial
 start with inicio; 
@@ -94,20 +105,34 @@ lista_instrucciones ::= instruccion
 
 instruccion ::= variable 
         | array 
-        | operacion_aritmetica 
+        | print
 ;
 
-operacion_aritmetica ::= operacion PARENTESIS_APERTURA expresion COMA expresion PARENTESIS_CIERRE
+print ::= CONSOLE DOS_PUNTOS DOS_PUNTOS IMPRIMIR IGUAL lista_expresiones FIN_DECLARACION PUNTO_COMA
 ;
 
-variable ::= VAR DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_VAR MENORQUE GUION expresion FIN_DECLARACION PUNTO_COMA
+operacion_aritmetica ::= operacion:op PARENTESIS_APERTURA expresion:izq COMA expresion:der PARENTESIS_CIERRE {: 
+                    RESULT = Instrucciones.Aritméticas.realizarOperación(op.toString(), izq.toString(), der.toString() ); 
+                    :}
 ;
 
-operacion ::= SUMA 
-        | RESTA 
-        | MULTIPLICACION 
-        | DIVISION 
-        | MODULO 
+operacion_estadistica ::= MEDIA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
+        | MEDIANA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
+        | MODA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
+        | VARIANZA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
+        | MAX PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
+        | MIN PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
+;
+
+variable ::= VAR DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_VAR:id MENORQUE GUION expresion:valor FIN_DECLARACION PUNTO_COMA {: System.out.println("Asignando valor a la variable " + id.toString() + ": " + valor.toString());
+Instrucciones.Variables.asignarVariable(id.toString(), valor.toString()); :}
+;
+
+operacion ::= SUMA:val  {: RESULT = val.toString(); :}
+        | RESTA :val    {: RESULT = val.toString(); :}
+        | MULTIPLICACION:val    {: RESULT = val.toString(); :}
+        | DIVISION:val  {: RESULT = val.toString(); :}
+        | MODULO:val    {: RESULT = val.toString(); :}
 ;
 
 array ::= ARRAY DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_ARRAY MENORQUE GUION CORCHETE_APERTURA lista_expresiones CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA
@@ -117,14 +142,17 @@ tipo ::= DOUBLE
         | CHAR
 ;
 
-expresion ::= ENTERO
-        | DECIMAL
-        | CADENA
-        | variable
-        | ID_VAR
-        | operacion_aritmetica
+expresion ::= ENTERO:val    {: RESULT = val.toString(); :}
+        | DECIMAL:val   {: RESULT = val.toString(); :}
+        | CADENA:val    {: RESULT = val.toString(); :}
+        | variable:val  {: RESULT = val.toString(); :}
+        | ID_VAR:val    {: RESULT = val.toString(); :}
+        | operacion_aritmetica:val {: RESULT = val.toString(); :}
+        | operacion_estadistica:val {: RESULT = val.toString(); :}
+        | array:val {: RESULT = val.toString(); :}
+        | ID_ARRAY:val {: RESULT = val.toString(); :}
 ;
 
-lista_expresiones ::= expresion 
+lista_expresiones ::= expresion
         | lista_expresiones COMA expresion
 ;

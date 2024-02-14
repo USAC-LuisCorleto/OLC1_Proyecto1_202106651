@@ -64,18 +64,18 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\1\1\1\2\1\3\2\1\22\0\1\4\1\0"+
-    "\1\5\5\0\1\6\1\7\2\0\1\10\1\11\1\12"+
-    "\1\0\12\13\1\14\1\15\1\16\1\0\1\17\1\0"+
-    "\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27"+
-    "\1\30\1\31\2\26\1\32\1\33\1\34\1\35\1\36"+
-    "\1\26\1\37\1\40\1\26\1\41\1\42\4\26\1\43"+
-    "\1\0\1\44\1\0\1\45\1\0\1\21\1\22\1\23"+
-    "\1\24\1\25\1\26\1\27\1\30\1\31\2\26\1\32"+
-    "\1\33\1\34\1\35\1\36\1\26\1\37\1\40\1\26"+
-    "\1\41\1\42\4\26\12\0\1\3\113\0\1\26\37\0"+
-    "\1\26\76\0\2\46\115\0\1\47\u01a8\0\2\3\326\0"+
-    "\u0100\3";
+    "\11\0\2\1\1\2\2\1\22\0\1\3\1\0\1\4"+
+    "\5\0\1\5\1\6\2\0\1\7\1\10\1\11\1\0"+
+    "\12\12\1\13\1\14\1\15\1\16\1\17\1\0\1\20"+
+    "\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
+    "\1\31\2\26\1\32\1\33\1\34\1\35\1\36\1\26"+
+    "\1\37\1\40\1\41\1\42\1\43\1\26\1\44\1\26"+
+    "\1\45\1\46\1\0\1\47\1\0\1\50\1\0\1\21"+
+    "\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31"+
+    "\2\26\1\32\1\33\1\34\1\35\1\36\1\26\1\37"+
+    "\1\40\1\41\1\42\1\43\1\26\1\44\1\26\1\45"+
+    "\12\0\1\2\113\0\1\26\37\0\1\26\76\0\2\51"+
+    "\115\0\1\52\u01a8\0\2\2\326\0\u0100\2";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1280];
@@ -103,15 +103,19 @@ public class Lexer implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\1\1\1\3\1\4\1\5\1\6"+
-    "\1\7\1\10\1\11\1\12\1\13\1\1\12\14\1\15"+
-    "\1\16\1\1\2\0\1\17\5\20\1\0\7\20\1\0"+
-    "\1\21\1\22\1\23\1\20\1\24\1\20\1\24\1\25"+
-    "\1\26\1\27\1\20\2\30\1\31\1\32\1\31\2\20"+
-    "\1\0\1\20\1\0\1\20\1\0\1\20\1\33\1\34"+
-    "\1\0\1\20\1\0\1\35\3\0\1\36";
+    "\1\7\1\10\1\11\1\12\1\13\1\14\1\1\12\15"+
+    "\1\16\1\17\1\1\1\0\1\20\1\0\1\21\6\22"+
+    "\1\0\6\22\1\0\4\22\1\0\1\23\1\24\2\22"+
+    "\1\25\1\22\1\25\1\26\1\27\1\22\1\30\1\31"+
+    "\1\32\1\30\2\22\1\0\2\33\1\34\1\35\1\34"+
+    "\2\22\1\0\1\22\1\0\1\22\1\0\1\36\2\22"+
+    "\1\0\1\22\2\0\1\22\1\0\1\22\1\0\2\37"+
+    "\1\40\1\22\1\40\1\22\1\0\1\41\1\22\1\0"+
+    "\1\42\1\0\1\22\1\0\2\22\1\0\2\43\1\0"+
+    "\2\44\1\45\1\22\2\0\2\46\2\0\1\47";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[78];
+    int [] result = new int[122];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -136,19 +140,25 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\50\0\50\0\120\0\50\0\50\0\50\0\50"+
-    "\0\170\0\50\0\50\0\50\0\50\0\240\0\310\0\360"+
-    "\0\u0118\0\u0140\0\u0168\0\u0190\0\u01b8\0\u01e0\0\u0208\0\u0230"+
-    "\0\50\0\50\0\u0258\0\u0280\0\u02a8\0\u02d0\0\360\0\u02f8"+
-    "\0\u0320\0\u0348\0\u0370\0\u0398\0\u03c0\0\u03e8\0\u0410\0\u0438"+
-    "\0\u0460\0\u0488\0\u04b0\0\u04d8\0\50\0\u02a8\0\360\0\u0500"+
-    "\0\360\0\u0528\0\50\0\u0550\0\360\0\360\0\u0578\0\360"+
-    "\0\50\0\360\0\360\0\50\0\u05a0\0\u05c8\0\u05f0\0\u0618"+
-    "\0\u0640\0\u0668\0\u0690\0\u06b8\0\50\0\360\0\u06e0\0\u0708"+
-    "\0\u0730\0\360\0\u0758\0\u0780\0\u07a8\0\50";
+    "\0\0\0\53\0\53\0\126\0\53\0\53\0\53\0\53"+
+    "\0\201\0\53\0\53\0\53\0\53\0\53\0\254\0\327"+
+    "\0\u0102\0\u012d\0\u0158\0\u0183\0\u01ae\0\u01d9\0\u0204\0\u022f"+
+    "\0\u025a\0\53\0\53\0\u0285\0\126\0\53\0\u02b0\0\u02db"+
+    "\0\u0102\0\u0306\0\u0331\0\u035c\0\u0387\0\u03b2\0\u03dd\0\u0408"+
+    "\0\u0433\0\u045e\0\u0489\0\u04b4\0\u04df\0\u050a\0\u0535\0\u0560"+
+    "\0\u058b\0\u05b6\0\u05e1\0\u02b0\0\u0102\0\u060c\0\u0637\0\u0102"+
+    "\0\u0662\0\53\0\u068d\0\u0102\0\u06b8\0\u0102\0\u06e3\0\u0102"+
+    "\0\53\0\u070e\0\u0739\0\u0764\0\u0102\0\53\0\u0102\0\u078f"+
+    "\0\53\0\u07ba\0\u07e5\0\u0810\0\u083b\0\u0866\0\u0891\0\u08bc"+
+    "\0\u0102\0\u08e7\0\u0912\0\u093d\0\u0968\0\u0993\0\u09be\0\u09e9"+
+    "\0\u0a14\0\u0a3f\0\u0a6a\0\u0a95\0\u0ac0\0\u0102\0\u0aeb\0\53"+
+    "\0\u0b16\0\u0b41\0\53\0\u0b6c\0\u0b97\0\u0102\0\u0bc2\0\u0bed"+
+    "\0\u0c18\0\u0c43\0\u0c6e\0\u0c99\0\u0102\0\53\0\u0cc4\0\u0102"+
+    "\0\53\0\u0102\0\u0cef\0\u0d1a\0\u0d45\0\u0102\0\53\0\u0d70"+
+    "\0\u0d9b\0\53";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[78];
+    int [] result = new int[122];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -171,51 +181,74 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\2\3\1\0\1\3\1\4\1\5\1\6\1\7"+
+    "\1\2\1\3\1\0\1\3\1\4\1\5\1\6\1\7"+
     "\1\10\1\2\1\11\1\12\1\13\1\14\1\15\1\16"+
-    "\1\17\1\20\1\21\1\22\1\23\5\20\1\24\2\20"+
-    "\1\25\1\26\1\27\1\20\1\30\1\31\1\32\2\2"+
-    "\1\33\50\0\2\34\1\0\2\34\1\0\42\34\12\0"+
-    "\1\35\1\11\55\0\22\36\20\0\1\37\5\0\16\37"+
-    "\1\40\3\37\2\0\1\37\15\0\1\37\5\0\22\37"+
-    "\2\0\1\37\15\0\1\37\5\0\7\37\1\41\12\37"+
-    "\2\0\1\37\15\0\1\37\5\0\10\37\1\42\3\37"+
-    "\1\43\5\37\2\0\1\37\1\44\14\0\1\37\5\0"+
-    "\13\37\1\45\6\37\2\0\1\37\15\0\1\37\5\0"+
-    "\14\37\1\46\3\37\1\47\1\37\2\0\1\37\15\0"+
-    "\1\37\5\0\16\37\1\50\3\37\2\0\1\37\15\0"+
-    "\1\37\5\0\4\37\1\51\15\37\2\0\1\37\15\0"+
-    "\1\37\5\0\20\37\1\52\1\37\2\0\1\37\15\0"+
-    "\1\37\5\0\1\53\21\37\2\0\1\37\43\0\1\54"+
-    "\6\0\2\34\1\0\2\34\1\55\42\34\13\0\1\56"+
-    "\47\0\1\36\5\0\22\36\2\0\1\36\15\0\1\37"+
-    "\5\0\16\37\1\57\3\37\2\0\1\37\15\0\1\37"+
-    "\5\0\1\60\21\37\2\0\1\37\15\0\1\37\5\0"+
-    "\21\37\1\61\2\0\1\37\15\0\1\37\5\0\20\37"+
-    "\1\62\1\37\2\0\1\37\44\0\1\63\20\0\1\37"+
-    "\5\0\3\37\1\64\16\37\2\0\1\37\15\0\1\37"+
-    "\5\0\3\37\1\65\16\37\2\0\1\37\15\0\1\37"+
-    "\5\0\11\37\1\66\10\37\2\0\1\37\15\0\1\37"+
-    "\5\0\14\37\1\67\5\37\2\0\1\37\15\0\1\37"+
-    "\5\0\17\37\1\70\2\37\2\0\1\37\1\0\1\71"+
-    "\13\0\1\37\5\0\12\37\1\72\7\37\2\0\1\37"+
-    "\15\0\1\37\5\0\16\37\1\73\3\37\2\0\1\37"+
-    "\35\0\1\74\27\0\1\37\5\0\16\37\1\75\3\37"+
-    "\2\0\1\37\15\0\1\37\5\0\1\37\1\76\20\37"+
-    "\2\0\1\37\6\0\1\77\6\0\1\37\5\0\22\37"+
-    "\2\0\1\37\15\0\1\37\5\0\6\37\1\100\13\37"+
-    "\2\0\1\37\15\0\1\37\5\0\22\37\1\101\1\0"+
-    "\1\37\15\0\1\37\5\0\11\37\1\102\10\37\2\0"+
-    "\1\37\40\0\1\103\24\0\1\37\5\0\16\37\1\104"+
-    "\3\37\2\0\1\37\46\0\1\105\16\0\1\37\5\0"+
-    "\4\37\1\106\15\37\2\0\1\37\41\0\1\107\23\0"+
-    "\1\37\5\0\1\110\21\37\2\0\1\37\37\0\1\111"+
-    "\25\0\1\37\5\0\12\37\1\112\7\37\2\0\1\37"+
-    "\31\0\1\113\57\0\1\114\31\0\1\115\61\0\1\116"+
-    "\14\0";
+    "\1\17\1\20\1\21\1\22\1\23\1\24\5\21\1\25"+
+    "\2\21\1\26\1\27\1\30\2\21\1\31\2\21\1\32"+
+    "\1\33\2\2\1\34\53\0\4\35\1\36\46\35\11\0"+
+    "\1\37\1\11\61\0\25\40\17\0\1\41\6\0\16\41"+
+    "\1\42\6\41\2\0\1\41\14\0\1\41\6\0\25\41"+
+    "\2\0\1\41\14\0\1\41\6\0\7\41\1\43\4\41"+
+    "\1\44\10\41\2\0\1\41\14\0\1\41\6\0\10\41"+
+    "\1\45\3\41\1\46\10\41\2\0\1\41\1\47\13\0"+
+    "\1\41\6\0\13\41\1\50\11\41\2\0\1\41\14\0"+
+    "\1\41\6\0\1\51\3\41\1\52\3\41\1\53\3\41"+
+    "\1\54\4\41\1\55\3\41\2\0\1\41\1\56\13\0"+
+    "\1\41\6\0\16\41\1\57\6\41\2\0\1\41\14\0"+
+    "\1\41\6\0\4\41\1\60\20\41\2\0\1\41\14\0"+
+    "\1\41\6\0\21\41\1\61\3\41\2\0\1\41\14\0"+
+    "\1\41\6\0\1\62\24\41\2\0\1\41\44\0\1\63"+
+    "\22\0\1\64\52\0\1\40\6\0\25\40\2\0\1\40"+
+    "\14\0\1\41\6\0\16\41\1\65\6\41\2\0\1\41"+
+    "\14\0\1\41\6\0\1\66\24\41\2\0\1\41\14\0"+
+    "\1\41\6\0\13\41\1\67\11\41\2\0\1\41\14\0"+
+    "\1\41\6\0\22\41\1\70\2\41\2\0\1\41\14\0"+
+    "\1\41\6\0\21\41\1\71\3\41\2\0\1\41\45\0"+
+    "\1\72\21\0\1\41\6\0\3\41\1\73\21\41\2\0"+
+    "\1\41\14\0\1\41\6\0\23\41\1\74\1\41\2\0"+
+    "\1\41\14\0\1\41\6\0\3\41\1\75\21\41\2\0"+
+    "\1\41\14\0\1\41\6\0\13\41\1\76\11\41\2\0"+
+    "\1\41\14\0\1\41\6\0\3\41\1\77\21\41\2\0"+
+    "\1\41\14\0\1\41\6\0\11\41\1\100\13\41\2\0"+
+    "\1\41\36\0\1\101\30\0\1\41\6\0\10\41\1\102"+
+    "\3\41\1\103\10\41\2\0\1\41\1\104\13\0\1\41"+
+    "\6\0\17\41\1\105\5\41\2\0\1\41\1\0\1\106"+
+    "\12\0\1\41\6\0\12\41\1\107\12\41\2\0\1\41"+
+    "\14\0\1\41\6\0\16\41\1\110\6\41\2\0\1\41"+
+    "\35\0\1\111\31\0\1\41\6\0\16\41\1\112\6\41"+
+    "\2\0\1\41\14\0\1\41\6\0\17\41\1\113\5\41"+
+    "\2\0\1\41\1\0\1\114\12\0\1\41\6\0\1\41"+
+    "\1\115\23\41\2\0\1\41\5\0\1\116\6\0\1\41"+
+    "\6\0\25\41\2\0\1\41\14\0\1\41\6\0\10\41"+
+    "\1\117\14\41\2\0\1\41\1\120\13\0\1\41\6\0"+
+    "\1\121\24\41\2\0\1\41\14\0\1\41\6\0\13\41"+
+    "\1\122\11\41\2\0\1\41\14\0\1\41\6\0\6\41"+
+    "\1\123\16\41\2\0\1\41\36\0\1\124\30\0\1\41"+
+    "\6\0\10\41\1\125\14\41\2\0\1\41\1\126\13\0"+
+    "\1\41\6\0\25\41\1\127\1\0\1\41\14\0\1\41"+
+    "\6\0\14\41\1\130\10\41\2\0\1\41\37\0\1\131"+
+    "\27\0\1\41\6\0\11\41\1\132\13\41\2\0\1\41"+
+    "\40\0\1\133\26\0\1\41\6\0\1\134\24\41\2\0"+
+    "\1\41\23\0\1\135\43\0\1\41\6\0\20\41\1\136"+
+    "\4\41\2\0\1\41\14\0\1\41\6\0\16\41\1\137"+
+    "\6\41\2\0\1\41\43\0\1\140\23\0\1\41\6\0"+
+    "\1\141\24\41\2\0\1\41\23\0\1\142\100\0\1\143"+
+    "\15\0\1\41\6\0\11\41\1\144\13\41\2\0\1\41"+
+    "\34\0\1\145\32\0\1\41\6\0\4\41\1\146\20\41"+
+    "\2\0\1\41\41\0\1\147\25\0\1\41\6\0\13\41"+
+    "\1\150\11\41\2\0\1\41\36\0\1\151\30\0\1\41"+
+    "\6\0\1\152\24\41\2\0\1\41\14\0\1\41\6\0"+
+    "\13\41\1\153\11\41\2\0\1\41\36\0\1\154\30\0"+
+    "\1\41\6\0\4\41\1\155\20\41\2\0\1\41\27\0"+
+    "\1\156\62\0\1\157\27\0\1\41\6\0\1\160\24\41"+
+    "\2\0\1\41\23\0\1\161\43\0\1\41\6\0\12\41"+
+    "\1\162\12\41\2\0\1\41\14\0\1\41\6\0\24\41"+
+    "\1\163\2\0\1\41\47\0\1\164\34\0\1\165\35\0"+
+    "\1\41\6\0\1\166\24\41\2\0\1\41\23\0\1\167"+
+    "\70\0\1\170\34\0\1\171\64\0\1\172\17\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[2000];
+    int [] result = new int[3526];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -258,14 +291,18 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\2\11\1\1\4\11\1\1\4\11\13\1\2\11"+
-    "\1\1\2\0\6\1\1\0\7\1\1\0\1\11\5\1"+
-    "\1\11\5\1\1\11\2\1\1\11\2\1\1\0\1\1"+
-    "\1\0\1\1\1\0\1\1\1\11\1\1\1\0\1\1"+
-    "\1\0\1\1\3\0\1\11";
+    "\1\0\2\11\1\1\4\11\1\1\5\11\13\1\2\11"+
+    "\1\1\1\0\1\11\1\0\7\1\1\0\6\1\1\0"+
+    "\4\1\1\0\6\1\1\11\6\1\1\11\2\1\1\0"+
+    "\1\1\1\11\2\1\1\11\2\1\1\0\1\1\1\0"+
+    "\1\1\1\0\3\1\1\0\1\1\2\0\1\1\1\0"+
+    "\1\1\1\0\4\1\1\11\1\1\1\0\1\11\1\1"+
+    "\1\0\1\1\1\0\1\1\1\0\2\1\1\0\1\1"+
+    "\1\11\1\0\1\1\1\11\2\1\2\0\1\1\1\11"+
+    "\2\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[78];
+    int [] result = new int[122];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -772,152 +809,197 @@ public class Lexer implements java_cup.runtime.Scanner {
             { System.out.println("Error Lexico: " + yytext() + " | Fila:" + yyline + " | Columna: " + yycolumn);
             }
           // fall through
-          case 31: break;
+          case 40: break;
           case 2:
             { /* Espacios en blanco se ignoran */
             }
           // fall through
-          case 32: break;
+          case 41: break;
           case 3:
             { return new Symbol(sym.PARENTESIS_APERTURA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 33: break;
+          case 42: break;
           case 4:
             { return new Symbol(sym.PARENTESIS_CIERRE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 34: break;
+          case 43: break;
           case 5:
             { return new Symbol(sym.COMA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 35: break;
+          case 44: break;
           case 6:
             { return new Symbol(sym.GUION, yycolumn, yyline, yytext());
             }
           // fall through
-          case 36: break;
+          case 45: break;
           case 7:
             { return new Symbol(sym.ENTERO, yycolumn, yyline, yytext());
             }
           // fall through
-          case 37: break;
+          case 46: break;
           case 8:
             { return new Symbol(sym.DOS_PUNTOS, yycolumn, yyline, yytext());
             }
           // fall through
-          case 38: break;
+          case 47: break;
           case 9:
             { return new Symbol(sym.PUNTO_COMA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 39: break;
+          case 48: break;
           case 10:
             { return new Symbol(sym.MENORQUE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 40: break;
-          case 11:
-            { return new Symbol(sym.MAYORQUE, yycolumn, yyline, yytext());
-            }
-          // fall through
-          case 41: break;
-          case 12:
-            { return new Symbol(sym.LETRA, yycolumn, yyline, yytext());
-            }
-          // fall through
-          case 42: break;
-          case 13:
-            { return new Symbol(sym.CORCHETE_APERTURA, yycolumn, yyline, yytext());
-            }
-          // fall through
-          case 43: break;
-          case 14:
-            { return new Symbol(sym.CORCHETE_CIERRE, yycolumn, yyline, yytext());
-            }
-          // fall through
-          case 44: break;
-          case 15:
-            { return new Symbol(sym.ID_ARRAY, yycolumn, yyline, yytext());
-            }
-          // fall through
-          case 45: break;
-          case 16:
-            { return new Symbol(sym.ID_VAR, yycolumn, yyline, yytext());
-            }
-          // fall through
-          case 46: break;
-          case 17:
-            { return new Symbol(sym.CADENA, yycolumn, yyline, yytext());
-            }
-          // fall through
-          case 47: break;
-          case 18:
-            { return new Symbol(sym.DECIMAL, yycolumn, yyline, yytext());
-            }
-          // fall through
-          case 48: break;
-          case 19:
-            { return new Symbol(sym.ARRAY, yycolumn, yyline, yytext());
-            }
-          // fall through
           case 49: break;
-          case 20:
-            { return new Symbol(sym.DIVISION, yycolumn, yyline, yytext());
+          case 11:
+            { return new Symbol(sym.IGUAL, yycolumn, yyline, yytext());
             }
           // fall through
           case 50: break;
-          case 21:
-            { return new Symbol(sym.FIN_DECLARACION, yycolumn, yyline, yytext());
+          case 12:
+            { return new Symbol(sym.MAYORQUE, yycolumn, yyline, yytext());
             }
           // fall through
           case 51: break;
-          case 22:
-            { return new Symbol(sym.MODULO, yycolumn, yyline, yytext());
+          case 13:
+            { return new Symbol(sym.LETRA, yycolumn, yyline, yytext());
             }
           // fall through
           case 52: break;
-          case 23:
-            { return new Symbol(sym.MULTIPLICACION, yycolumn, yyline, yytext());
+          case 14:
+            { return new Symbol(sym.CORCHETE_APERTURA, yycolumn, yyline, yytext());
             }
           // fall through
           case 53: break;
-          case 24:
-            { return new Symbol(sym.RESTA, yycolumn, yyline, yytext());
+          case 15:
+            { return new Symbol(sym.CORCHETE_CIERRE, yycolumn, yyline, yytext());
             }
           // fall through
           case 54: break;
-          case 25:
-            { return new Symbol(sym.SUMA, yycolumn, yyline, yytext());
+          case 16:
+            { System.out.println(yytext()); return new Symbol(sym.CADENA, yycolumn, yyline, yytext());
             }
           // fall through
           case 55: break;
-          case 26:
-            { return new Symbol(sym.VAR, yycolumn, yyline, yytext());
+          case 17:
+            { System.out.println(yytext()); return new Symbol(sym.ID_ARRAY, yycolumn, yyline, yytext());
             }
           // fall through
           case 56: break;
-          case 27:
-            { return new Symbol(sym.CHAR, yycolumn, yyline, yytext());
+          case 18:
+            { return new Symbol(sym.ID_VAR, yycolumn, yyline, yytext());
             }
           // fall through
           case 57: break;
-          case 28:
-            { return new Symbol(sym.DOUBLE, yycolumn, yyline, yytext());
+          case 19:
+            { return new Symbol(sym.DECIMAL, yycolumn, yyline, yytext());
             }
           // fall through
           case 58: break;
-          case 29:
-            { return new Symbol(sym.INICIO_CODIGO, yycolumn, yyline, yytext());
+          case 20:
+            { return new Symbol(sym.ARRAY, yycolumn, yyline, yytext());
             }
           // fall through
           case 59: break;
-          case 30:
-            { return new Symbol(sym.FIN_CODIGO, yycolumn, yyline, yytext());
+          case 21:
+            { return new Symbol(sym.DIVISION, yycolumn, yyline, yytext());
             }
           // fall through
           case 60: break;
+          case 22:
+            { return new Symbol(sym.FIN_DECLARACION, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 61: break;
+          case 23:
+            { return new Symbol(sym.MAX, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 62: break;
+          case 24:
+            { return new Symbol(sym.MIN, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 63: break;
+          case 25:
+            { return new Symbol(sym.MODULO, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 64: break;
+          case 26:
+            { return new Symbol(sym.MULTIPLICACION, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 65: break;
+          case 27:
+            { return new Symbol(sym.RESTA, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 66: break;
+          case 28:
+            { return new Symbol(sym.SUMA, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 67: break;
+          case 29:
+            { return new Symbol(sym.VAR, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 68: break;
+          case 30:
+            { return new Symbol(sym.MODA, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 69: break;
+          case 31:
+            { return new Symbol(sym.MEDIA, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 70: break;
+          case 32:
+            { return new Symbol(sym.IMPRIMIR, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 71: break;
+          case 33:
+            { return new Symbol(sym.CHAR, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 72: break;
+          case 34:
+            { return new Symbol(sym.DOUBLE, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 73: break;
+          case 35:
+            { return new Symbol(sym.CONSOLE, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 74: break;
+          case 36:
+            { return new Symbol(sym.MEDIANA, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 75: break;
+          case 37:
+            { return new Symbol(sym.INICIO_CODIGO, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 76: break;
+          case 38:
+            { return new Symbol(sym.VARIANZA, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 77: break;
+          case 39:
+            { return new Symbol(sym.FIN_CODIGO, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 78: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

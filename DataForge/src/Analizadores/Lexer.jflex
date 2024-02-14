@@ -32,6 +32,14 @@ RESTA = "RES"
 MULTIPLICACION = "MUL"
 DIVISION = "DIV"
 MODULO = "MOD"
+CONSOLE = "console"
+IMPRIMIR = "print"
+MEDIA = "Media"
+MEDIANA = "Mediana"
+MODA = "Moda"
+VARIANZA = "Varianza"
+MAX = "Max"
+MIN = "Min"
 
 /*-----PRÍNCIPAL-----*/
 ENTERO = [0-9]+
@@ -39,7 +47,7 @@ DECIMAL = [0-9]+(\.[0-9]+)?
 LETRA = [a-zA-ZÑñ]
 ID_VAR = {LETRA}({LETRA}|{ENTERO}|"_")*
 ID_ARRAY = @{LETRA}({LETRA}|{ENTERO}|"_")*
-CADENA = [\"][^\"\n]+[\"]
+CADENA = \"[^\"]*\"
 
 /*-----CONCATENADORES-----*/
 CORCHETE_APERTURA = "["
@@ -55,7 +63,7 @@ MENORQUE = "<"
 MAYORQUE = ">"
 GUION = "-"
 COMA = ","
-
+IGUAL = "="
 
 
 %%
@@ -73,14 +81,22 @@ COMA = ","
 {MULTIPLICACION}  { return new Symbol(sym.MULTIPLICACION, yycolumn, yyline, yytext()); }
 {DIVISION}  { return new Symbol(sym.DIVISION, yycolumn, yyline, yytext()); }
 {MODULO}  { return new Symbol(sym.MODULO, yycolumn, yyline, yytext()); }
+{CONSOLE}  { return new Symbol(sym.CONSOLE, yycolumn, yyline, yytext()); }
+{IMPRIMIR}  { return new Symbol(sym.IMPRIMIR, yycolumn, yyline, yytext()); }
+{MEDIA}  { return new Symbol(sym.MEDIA, yycolumn, yyline, yytext()); }
+{MEDIANA}  { return new Symbol(sym.MEDIANA, yycolumn, yyline, yytext()); }
+{MODA}  { return new Symbol(sym.MODA, yycolumn, yyline, yytext()); }
+{VARIANZA}  { return new Symbol(sym.VARIANZA, yycolumn, yyline, yytext()); }
+{MAX}  { return new Symbol(sym.MAX, yycolumn, yyline, yytext()); }
+{MIN}  { return new Symbol(sym.MIN, yycolumn, yyline, yytext()); }
 
 /*-----PRÍNCIPAL-----*/
 {ENTERO}  { return new Symbol(sym.ENTERO, yycolumn, yyline, yytext()); }
 {DECIMAL}  { return new Symbol(sym.DECIMAL, yycolumn, yyline, yytext()); }
 {LETRA}  { return new Symbol(sym.LETRA, yycolumn, yyline, yytext()); }
 {ID_VAR}  { return new Symbol(sym.ID_VAR, yycolumn, yyline, yytext()); }
-{ID_ARRAY}  { return new Symbol(sym.ID_ARRAY, yycolumn, yyline, yytext()); }
-{CADENA}  { return new Symbol(sym.CADENA, yycolumn, yyline, yytext()); }
+{ID_ARRAY}  { System.out.println(yytext()); return new Symbol(sym.ID_ARRAY, yycolumn, yyline, yytext()); }
+{CADENA}  { System.out.println(yytext()); return new Symbol(sym.CADENA, yycolumn, yyline, yytext()); }
 
 /*-----CONCATENADORES-----*/
 {CORCHETE_APERTURA}  { return new Symbol(sym.CORCHETE_APERTURA, yycolumn, yyline, yytext()); }
@@ -95,6 +111,7 @@ COMA = ","
 {MAYORQUE}  { return new Symbol(sym.MAYORQUE, yycolumn, yyline, yytext()); }
 {GUION}  { return new Symbol(sym.GUION, yycolumn, yyline, yytext()); }
 {COMA}  { return new Symbol(sym.COMA, yycolumn, yyline, yytext()); }
+{IGUAL}  { return new Symbol(sym.IGUAL, yycolumn, yyline, yytext()); }
 
 //------> Ingorados 
 [ \t\r\n\f]     {/* Espacios en blanco se ignoran */}

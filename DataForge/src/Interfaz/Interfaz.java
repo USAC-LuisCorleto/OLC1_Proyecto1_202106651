@@ -2,7 +2,9 @@ package Interfaz;
 
 import Analizadores.Parser;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import javax.swing.JFileChooser;
@@ -11,6 +13,8 @@ import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Interfaz extends javax.swing.JFrame {
+
+    java.util.HashMap<JScrollPane, File> archivosAbiertos = new java.util.HashMap<>();
 
     public Interfaz() {
         initComponents();
@@ -229,9 +233,10 @@ public class Interfaz extends javax.swing.JFrame {
                     String nombreArchivo = archivoSeleccionado.getName();
                     panelArchivos.addTab(nombreArchivo, new JScrollPane(nuevoTextArea));
                     panelArchivos.setSelectedIndex(panelArchivos.getTabCount() - 1);
+                    archivosAbiertos.put((JScrollPane) panelArchivos.getSelectedComponent(), archivoSeleccionado);
                 }
             } catch (IOException ex) {
-
+                ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_menúAbrirActionPerformed
@@ -246,26 +251,42 @@ public class Interfaz extends javax.swing.JFrame {
     private void menúGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menúGuardarActionPerformed
         JScrollPane pestañaSeleccionada = (JScrollPane) panelArchivos.getSelectedComponent();
         JTextArea textArea = (JTextArea) pestañaSeleccionada.getViewport().getView();
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos DataForge (*.df)", "df");
-        fileChooser.setFileFilter(filter);
 
-        int resultado = fileChooser.showSaveDialog(this);
-        if (resultado == JFileChooser.APPROVE_OPTION) {
-            java.io.File selectedFile = fileChooser.getSelectedFile();
-
-            String nombreArchivo = selectedFile.getName();
-            if (!nombreArchivo.endsWith(".df")) {
-                nombreArchivo += ".df";
-                selectedFile = new java.io.File(selectedFile.getParent(), nombreArchivo);
-            }
-
+        // Verificamos si la pestaña actual corresponde a un archivo existente
+        if (archivosAbiertos.containsKey(pestañaSeleccionada)) {
+            File archivo = archivosAbiertos.get(pestañaSeleccionada);
             try {
-                try (java.io.FileWriter writer = new java.io.FileWriter(selectedFile)) {
+                try (FileWriter writer = new FileWriter(archivo)) {
                     writer.write(textArea.getText());
                 }
-                panelArchivos.setTitleAt(panelArchivos.getSelectedIndex(), nombreArchivo);
+                panelArchivos.setTitleAt(panelArchivos.getSelectedIndex(), archivo.getName());
             } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            // Si la pestaña actual no corresponde a un archivo existente, abrimos el JFileChooser
+            JFileChooser fileChooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos DataForge (*.df)", "df");
+            fileChooser.setFileFilter(filter);
+
+            int resultado = fileChooser.showSaveDialog(this);
+            if (resultado == JFileChooser.APPROVE_OPTION) {
+                java.io.File selectedFile = fileChooser.getSelectedFile();
+
+                String nombreArchivo = selectedFile.getName();
+                if (!nombreArchivo.endsWith(".df")) {
+                    nombreArchivo += ".df";
+                    selectedFile = new java.io.File(selectedFile.getParent(), nombreArchivo);
+                }
+
+                try {
+                    try (java.io.FileWriter writer = new java.io.FileWriter(selectedFile)) {
+                        writer.write(textArea.getText());
+                    }
+                    panelArchivos.setTitleAt(panelArchivos.getSelectedIndex(), nombreArchivo);
+                    archivosAbiertos.put(pestañaSeleccionada, selectedFile);
+                } catch (IOException ex) {
+                }
             }
         }
     }//GEN-LAST:event_menúGuardarActionPerformed
