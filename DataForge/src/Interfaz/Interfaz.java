@@ -1,6 +1,7 @@
 package Interfaz;
 
 import Analizadores.Parser;
+import Instrucciones.Impresión;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -332,6 +333,8 @@ public class Interfaz extends javax.swing.JFrame {
 
             String textoArchivo = textArea.getText();
             analizar(textoArchivo);
+            String textoSalida = Analizadores.Parser.resultado; 
+            consolaArchivo.setText(textoSalida);
         }
     }//GEN-LAST:event_itemBarEjecutarMouseClicked
 

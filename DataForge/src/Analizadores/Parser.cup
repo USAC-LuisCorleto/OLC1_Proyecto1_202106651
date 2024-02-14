@@ -2,6 +2,7 @@
 package Analizadores;
 
 import java_cup.runtime.*;
+import java.util.ArrayList;
 
 
 //------> Codigo para el parser
@@ -9,7 +10,7 @@ import java_cup.runtime.*;
 
 parser code 
 {:
-    public String resultado = ""; 
+    public static String resultado = ""; 
 
     public void syntax_error(Symbol s)
     {
@@ -108,12 +109,11 @@ instruccion ::= variable
         | print
 ;
 
-print ::= CONSOLE DOS_PUNTOS DOS_PUNTOS IMPRIMIR IGUAL lista_expresiones FIN_DECLARACION PUNTO_COMA
+print ::= CONSOLE DOS_PUNTOS DOS_PUNTOS IMPRIMIR IGUAL lista_expresiones:listaexp FIN_DECLARACION PUNTO_COMA {: resultado = Instrucciones.Impresión.instrucciónPrint((ArrayList<String>) listaexp); :}
 ;
 
 operacion_aritmetica ::= operacion:op PARENTESIS_APERTURA expresion:izq COMA expresion:der PARENTESIS_CIERRE {: 
-                    RESULT = Instrucciones.Aritméticas.realizarOperación(op.toString(), izq.toString(), der.toString() ); 
-                    :}
+                        RESULT = Instrucciones.Aritméticas.realizarOperación(op.toString(), izq.toString(), der.toString() ); :}
 ;
 
 operacion_estadistica ::= MEDIA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
@@ -124,15 +124,16 @@ operacion_estadistica ::= MEDIA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
         | MIN PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
 ;
 
-variable ::= VAR DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_VAR:id MENORQUE GUION expresion:valor FIN_DECLARACION PUNTO_COMA {: System.out.println("Asignando valor a la variable " + id.toString() + ": " + valor.toString());
-Instrucciones.Variables.asignarVariable(id.toString(), valor.toString()); :}
+variable ::= VAR DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_VAR:id MENORQUE GUION expresion:valor FIN_DECLARACION PUNTO_COMA {: 
+                        System.out.println("Asignando valor a la variable " + id.toString() + ": " + valor.toString());
+                        Instrucciones.Variables.asignarVariable(id.toString(), valor.toString()); :}
 ;
 
-operacion ::= SUMA:val  {: RESULT = val.toString(); :}
-        | RESTA :val    {: RESULT = val.toString(); :}
+operacion ::= SUMA:val          {: RESULT = val.toString(); :}
+        | RESTA :val            {: RESULT = val.toString(); :}
         | MULTIPLICACION:val    {: RESULT = val.toString(); :}
-        | DIVISION:val  {: RESULT = val.toString(); :}
-        | MODULO:val    {: RESULT = val.toString(); :}
+        | DIVISION:val          {: RESULT = val.toString(); :}
+        | MODULO:val            {: RESULT = val.toString(); :}
 ;
 
 array ::= ARRAY DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_ARRAY MENORQUE GUION CORCHETE_APERTURA lista_expresiones CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA
@@ -142,17 +143,22 @@ tipo ::= DOUBLE
         | CHAR
 ;
 
-expresion ::= ENTERO:val    {: RESULT = val.toString(); :}
-        | DECIMAL:val   {: RESULT = val.toString(); :}
-        | CADENA:val    {: RESULT = val.toString(); :}
-        | variable:val  {: RESULT = val.toString(); :}
-        | ID_VAR:val    {: RESULT = val.toString(); :}
-        | operacion_aritmetica:val {: RESULT = val.toString(); :}
+expresion ::= ENTERO:val            {: RESULT = val.toString(); :}
+        | DECIMAL:val               {: RESULT = val.toString(); :}
+        | CADENA:val                {: RESULT = val.toString(); :}
+        | variable:val              {: RESULT = val.toString(); :}
+        | ID_VAR:val                {: RESULT = val.toString(); :}
+        | operacion_aritmetica:val  {: RESULT = val.toString(); :}
         | operacion_estadistica:val {: RESULT = val.toString(); :}
-        | array:val {: RESULT = val.toString(); :}
-        | ID_ARRAY:val {: RESULT = val.toString(); :}
+        | array:val                 {: RESULT = val.toString(); :}
+        | ID_ARRAY:val              {: RESULT = val.toString(); :}
 ;
 
-lista_expresiones ::= expresion
-        | lista_expresiones COMA expresion
+lista_expresiones ::= expresion:val {: 
+                        ArrayList<String> listaExp = new ArrayList<>();
+                        listaExp.add(val.toString());
+                        RESULT = listaExp;  :}
+        | lista_expresiones:listaExp COMA expresion:val {: 
+                        ((ArrayList<String>) listaExp).add(val.toString());
+                        RESULT = listaExp;  :}
 ;

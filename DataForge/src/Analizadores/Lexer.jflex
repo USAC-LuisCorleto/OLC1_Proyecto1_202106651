@@ -95,8 +95,8 @@ IGUAL = "="
 {DECIMAL}  { return new Symbol(sym.DECIMAL, yycolumn, yyline, yytext()); }
 {LETRA}  { return new Symbol(sym.LETRA, yycolumn, yyline, yytext()); }
 {ID_VAR}  { return new Symbol(sym.ID_VAR, yycolumn, yyline, yytext()); }
-{ID_ARRAY}  { System.out.println(yytext()); return new Symbol(sym.ID_ARRAY, yycolumn, yyline, yytext()); }
-{CADENA}  { System.out.println(yytext()); return new Symbol(sym.CADENA, yycolumn, yyline, yytext()); }
+{ID_ARRAY}  { return new Symbol(sym.ID_ARRAY, yycolumn, yyline, yytext()); }
+{CADENA}  { return new Symbol(sym.CADENA, yycolumn, yyline, yytext()); }
 
 /*-----CONCATENADORES-----*/
 {CORCHETE_APERTURA}  { return new Symbol(sym.CORCHETE_APERTURA, yycolumn, yyline, yytext()); }

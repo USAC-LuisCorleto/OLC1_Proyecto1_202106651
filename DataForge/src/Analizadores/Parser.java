@@ -6,6 +6,7 @@
 package Analizadores;
 
 import java_cup.runtime.*;
+import java.util.ArrayList;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -225,7 +226,7 @@ public class Parser extends java_cup.runtime.lr_parser {
 
 
 
-    public String resultado = ""; 
+    public static String resultado = ""; 
 
     public void syntax_error(Symbol s)
     {
@@ -337,7 +338,10 @@ class CUP$Parser$actions {
           case 7: // print ::= CONSOLE DOS_PUNTOS DOS_PUNTOS IMPRIMIR IGUAL lista_expresiones FIN_DECLARACION PUNTO_COMA 
             {
               Object RESULT =null;
-
+		int listaexpleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int listaexpright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		Object listaexp = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		 resultado = Instrucciones.Impresión.instrucciónPrint((ArrayList<String>) listaexp); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("print",11, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -356,8 +360,7 @@ class CUP$Parser$actions {
 		int derright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		Object der = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		 
-                    RESULT = Instrucciones.Aritméticas.realizarOperación(op.toString(), izq.toString(), der.toString() ); 
-                    
+                        RESULT = Instrucciones.Aritméticas.realizarOperación(op.toString(), izq.toString(), der.toString() ); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("operacion_aritmetica",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -426,8 +429,9 @@ class CUP$Parser$actions {
 		int valorleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
 		int valorright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		Object valor = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
-		 System.out.println("Asignando valor a la variable " + id.toString() + ": " + valor.toString());
-Instrucciones.Variables.asignarVariable(id.toString(), valor.toString()); 
+		 
+                        System.out.println("Asignando valor a la variable " + id.toString() + ": " + valor.toString());
+                        Instrucciones.Variables.asignarVariable(id.toString(), valor.toString()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("variable",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -631,7 +635,13 @@ Instrucciones.Variables.asignarVariable(id.toString(), valor.toString());
           case 33: // lista_expresiones ::= expresion 
             {
               Object RESULT =null;
-
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 
+                        ArrayList<String> listaExp = new ArrayList<>();
+                        listaExp.add(val.toString());
+                        RESULT = listaExp;  
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("lista_expresiones",7, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -640,7 +650,15 @@ Instrucciones.Variables.asignarVariable(id.toString(), valor.toString());
           case 34: // lista_expresiones ::= lista_expresiones COMA expresion 
             {
               Object RESULT =null;
-
+		int listaExpleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+		int listaExpright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+		Object listaExp = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 
+                        ((ArrayList<String>) listaExp).add(val.toString());
+                        RESULT = listaExp;  
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("lista_expresiones",7, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
