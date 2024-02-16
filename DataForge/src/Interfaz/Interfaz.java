@@ -1,13 +1,14 @@
 package Interfaz;
 
 import Analizadores.Parser;
-import Instrucciones.Impresión;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -47,6 +48,7 @@ public class Interfaz extends javax.swing.JFrame {
         reporteTokens = new javax.swing.JMenuItem();
         reporteErrores = new javax.swing.JMenuItem();
         reporteSímbolos = new javax.swing.JMenuItem();
+        itemBarLimpiar = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DataForge");
@@ -186,17 +188,40 @@ public class Interfaz extends javax.swing.JFrame {
 
         reporteTokens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/Images/cheque-de-boleta.png"))); // NOI18N
         reporteTokens.setText("Reporte de Tokens");
+        reporteTokens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reporteTokensActionPerformed(evt);
+            }
+        });
         itemBarReportes.add(reporteTokens);
 
         reporteErrores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/Images/hexagono-de-tiempos.png"))); // NOI18N
         reporteErrores.setText("Reporte de Errores");
+        reporteErrores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reporteErroresActionPerformed(evt);
+            }
+        });
         itemBarReportes.add(reporteErrores);
 
         reporteSímbolos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaz/Images/comprobacion-de-insignias.png"))); // NOI18N
         reporteSímbolos.setText("Reporte de Tabla de Símbolos");
+        reporteSímbolos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reporteSímbolosActionPerformed(evt);
+            }
+        });
         itemBarReportes.add(reporteSímbolos);
 
         jMenuBar1.add(itemBarReportes);
+
+        itemBarLimpiar.setText("Limpiar");
+        itemBarLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemBarLimpiarMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(itemBarLimpiar);
 
         setJMenuBar(jMenuBar1);
 
@@ -237,7 +262,6 @@ public class Interfaz extends javax.swing.JFrame {
                     archivosAbiertos.put((JScrollPane) panelArchivos.getSelectedComponent(), archivoSeleccionado);
                 }
             } catch (IOException ex) {
-                ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_menúAbrirActionPerformed
@@ -253,7 +277,6 @@ public class Interfaz extends javax.swing.JFrame {
         JScrollPane pestañaSeleccionada = (JScrollPane) panelArchivos.getSelectedComponent();
         JTextArea textArea = (JTextArea) pestañaSeleccionada.getViewport().getView();
 
-        // Verificamos si la pestaña actual corresponde a un archivo existente
         if (archivosAbiertos.containsKey(pestañaSeleccionada)) {
             File archivo = archivosAbiertos.get(pestañaSeleccionada);
             try {
@@ -262,10 +285,8 @@ public class Interfaz extends javax.swing.JFrame {
                 }
                 panelArchivos.setTitleAt(panelArchivos.getSelectedIndex(), archivo.getName());
             } catch (IOException ex) {
-                ex.printStackTrace();
             }
         } else {
-            // Si la pestaña actual no corresponde a un archivo existente, abrimos el JFileChooser
             JFileChooser fileChooser = new JFileChooser();
             FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos DataForge (*.df)", "df");
             fileChooser.setFileFilter(filter);
@@ -333,10 +354,39 @@ public class Interfaz extends javax.swing.JFrame {
 
             String textoArchivo = textArea.getText();
             analizar(textoArchivo);
-            String textoSalida = Analizadores.Parser.resultado; 
+            String textoSalida = Analizadores.Parser.resultado;
             consolaArchivo.setText(textoSalida);
         }
     }//GEN-LAST:event_itemBarEjecutarMouseClicked
+
+    private void reporteTokensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteTokensActionPerformed
+        try {
+            Reportes.ReporteTokens.generarReporteTokens();
+        } catch (IOException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_reporteTokensActionPerformed
+
+    private void reporteErroresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteErroresActionPerformed
+        try {
+            Reportes.ReporteErrores.generarReporteErrores();
+        } catch (IOException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_reporteErroresActionPerformed
+
+    private void itemBarLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemBarLimpiarMouseClicked
+        consolaArchivo.setText("");
+        Analizadores.Parser.resultado = "";
+    }//GEN-LAST:event_itemBarLimpiarMouseClicked
+
+    private void reporteSímbolosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteSímbolosActionPerformed
+        try {
+            Reportes.ReporteSímbolos.generarReporteErrores();
+        } catch (IOException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_reporteSímbolosActionPerformed
 
     private boolean verificarCambiosNoGuardados(JTextArea textArea) {
         return textArea.getDocument().getLength() != 0;
@@ -384,6 +434,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextArea consolaArchivo;
     private javax.swing.JMenu itemBarArchivo;
     private javax.swing.JMenu itemBarEjecutar;
+    private javax.swing.JMenu itemBarLimpiar;
     private javax.swing.JMenu itemBarPestañas;
     private javax.swing.JMenu itemBarReportes;
     private javax.swing.JLabel jLabel1;

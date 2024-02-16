@@ -3,6 +3,8 @@ package Analizadores;
 
 import java_cup.runtime.*;
 import java.util.ArrayList;
+import Reportes.ReporteErrores;
+import Reportes.ErrorObj;
 
 
 //------> Codigo para el parser
@@ -15,6 +17,7 @@ parser code
     public void syntax_error(Symbol s)
     {
             System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
+            ReporteErrores.TablaErroresSintácticos.add(new ErrorObj("Sintáctico", s.value.toString(), Integer.toString(s.right), Integer.toString(s.left))); 
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
@@ -136,22 +139,21 @@ operacion ::= SUMA:val          {: RESULT = val.toString(); :}
         | MODULO:val            {: RESULT = val.toString(); :}
 ;
 
-array ::= ARRAY DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_ARRAY MENORQUE GUION CORCHETE_APERTURA lista_expresiones CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA
+array ::= ARRAY DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_ARRAY:id MENORQUE GUION CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {:
+                        StringBuilder sb = new StringBuilder();
+                        for (String expresion : (ArrayList<String>) listaexp) {
+                            sb.append(expresion).append(", "); 
+                        }
+                        String expresiones = sb.toString();
+                        if (expresiones.length() > 2) { 
+                            expresiones = expresiones.substring(0, expresiones.length() - 2);
+                        }
+                        System.out.println("Asignando valores a la variable " + id.toString() + ": [" + expresiones + "]");
+                        Instrucciones.Arreglos.asignarArray(id.toString(),(ArrayList<String>) listaexp); :}
 ;
 
 tipo ::= DOUBLE
         | CHAR
-;
-
-expresion ::= ENTERO:val            {: RESULT = val.toString(); :}
-        | DECIMAL:val               {: RESULT = val.toString(); :}
-        | CADENA:val                {: RESULT = val.toString(); :}
-        | variable:val              {: RESULT = val.toString(); :}
-        | ID_VAR:val                {: RESULT = val.toString(); :}
-        | operacion_aritmetica:val  {: RESULT = val.toString(); :}
-        | operacion_estadistica:val {: RESULT = val.toString(); :}
-        | array:val                 {: RESULT = val.toString(); :}
-        | ID_ARRAY:val              {: RESULT = val.toString(); :}
 ;
 
 lista_expresiones ::= expresion:val {: 
@@ -162,3 +164,14 @@ lista_expresiones ::= expresion:val {:
                         ((ArrayList<String>) listaExp).add(val.toString());
                         RESULT = listaExp;  :}
 ;
+
+expresion ::= ENTERO:val            {: RESULT = val.toString(); :}
+        | DECIMAL:val               {: RESULT = val.toString(); :}
+        | CADENA:val                {: RESULT = val.toString(); :}
+        | ID_VAR:val                {: RESULT = val.toString(); :}
+        | operacion_aritmetica:val  {: RESULT = val.toString(); :}
+        | operacion_estadistica:val {: RESULT = val.toString(); :}
+        | array:val                 {: RESULT = val.toString(); :}
+        | ID_ARRAY:val              {: RESULT = val.toString(); :}
+;
+

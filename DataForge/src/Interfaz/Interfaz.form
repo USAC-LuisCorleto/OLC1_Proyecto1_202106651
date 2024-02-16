@@ -80,6 +80,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte de Tokens"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reporteTokensActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="reporteErrores">
               <Properties>
@@ -88,6 +91,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte de Errores"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reporteErroresActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="reporteS&#xed;mbolos">
               <Properties>
@@ -96,8 +102,19 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte de Tabla de S&#xed;mbolos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reporteS&#xed;mbolosActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="itemBarLimpiar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Limpiar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itemBarLimpiarMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
