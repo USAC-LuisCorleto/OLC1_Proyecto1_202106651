@@ -178,10 +178,9 @@ lista_expresiones ::= expresion:val {:
 expresion ::= ENTERO:val            {: RESULT = val.toString(); :}
         | DECIMAL:val               {: RESULT = val.toString(); :}
         | CADENA:val                {: RESULT = val.toString(); :}
-        | ID_VAR:val                {: RESULT = val.toString(); :}
+        | ID_VAR:val                {: RESULT = Instrucciones.Variables.obtenerVariable(val.toString()); :}
         | operacion_aritmetica:val  {: RESULT = val.toString(); :}
         | operacion_estadistica:val {: RESULT = val.toString(); :}
-        | array:val                 {: RESULT = val.toString(); :}
         | ID_ARRAY:val              {: RESULT = val.toString(); :}
 ;
 

@@ -15,6 +15,7 @@ public class ReporteErrores {
 
     public static void generarReporteErrores() throws FileNotFoundException, IOException {
         String nombreArchivo = "Reporte de Errores.html";
+        int contador = 1;
 
         try (FileOutputStream archivoStream = new FileOutputStream(nombreArchivo); OutputStreamWriter escritorStream = new OutputStreamWriter(archivoStream, StandardCharsets.UTF_8); BufferedWriter archivo = new BufferedWriter(escritorStream)) {
 
@@ -70,24 +71,28 @@ public class ReporteErrores {
             archivo.write("<body>\n");
 
             archivo.write("<table border=\"1\">\n");
-            archivo.write("<tr><th>Tipo</th><th>Lexema</th><th>Línea</th><th>Columna</th></tr>\n");
+            archivo.write("<tr><th>#</th><th>Tipo</th><th>Lexema</th><th>Línea</th><th>Columna</th></tr>\n");
 
             for (ErrorObj error : TablaErroresLéxicos) {
                 archivo.write("<tr>");
+                archivo.write("<td>" + contador + "</td>");
                 archivo.write("<td>" + error.getTipo() + "</td>");
                 archivo.write("<td>" + error.getLexema() + "</td>");
                 archivo.write("<td>" + error.getLínea() + "</td>");
                 archivo.write("<td>" + error.getColumna() + "</td>");
                 archivo.write("</tr>\n");
+                contador++;
             }
 
             for (ErrorObj error : TablaErroresSintácticos) {
                 archivo.write("<tr>");
+                archivo.write("<td>" + contador + "</td>");
                 archivo.write("<td>" + error.getTipo() + "</td>");
                 archivo.write("<td>" + error.getLexema() + "</td>");
                 archivo.write("<td>" + error.getLínea() + "</td>");
                 archivo.write("<td>" + error.getColumna() + "</td>");
                 archivo.write("</tr>\n");
+                contador++; 
             }
 
             archivo.write("</table>\n");

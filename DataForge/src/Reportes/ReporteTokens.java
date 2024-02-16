@@ -69,10 +69,12 @@ public class ReporteTokens {
             archivo.write("<body>\n");
 
             archivo.write("<table border=\"1\">\n");
-            archivo.write("<tr><th>Token</th><th>Lexema</th><th>Línea</th><th>Columna</th></tr>\n");
-
+            archivo.write("<tr><th>#</th><th>Tipo</th><th>Lexema</th><th>Línea</th><th>Columna</th></tr>\n");
+            
+            int numeral = 1;
             for (Token símbolo : TablaTokens) {
                 archivo.write("<tr>");
+                archivo.write("<td>" + numeral++ + "</td>");
                 archivo.write("<td>" + símbolo.getToken() + "</td>");
                 archivo.write("<td>" + símbolo.getLexema() + "</td>");
                 archivo.write("<td>" + símbolo.getLínea() + "</td>");
