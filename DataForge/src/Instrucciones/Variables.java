@@ -12,10 +12,10 @@ public class Variables {
         if (existeVariable(valor)) {
             String nuevoValor = obtenerVariable(valor);
             variables.put(nombre, nuevoValor);
-            ReporteSímbolos.TablaSímbolosVariables.add(new SímbolosV(nombre,nuevoValor));
+            ReporteSímbolos.TablaSímbolosVariables.add(new SímbolosV(nombre, nuevoValor));
         } else {
             variables.put(nombre, valor);
-            ReporteSímbolos.TablaSímbolosVariables.add(new SímbolosV(nombre,valor));
+            ReporteSímbolos.TablaSímbolosVariables.add(new SímbolosV(nombre, valor));
         }
     }
 
@@ -25,5 +25,9 @@ public class Variables {
 
     public static boolean existeVariable(String nombre) {
         return variables.containsKey(nombre);
+    }
+
+    public static HashMap<String, String> obtenerVariables() {
+        return variables;
     }
 }

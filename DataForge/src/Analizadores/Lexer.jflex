@@ -46,6 +46,7 @@ MODA = "Moda"
 VARIANZA = "Varianza"
 MAX = "Max"
 MIN = "Min"
+COLUMN = "column"
 
 /*-----PRÍNCIPAL-----*/
 ENTERO = [0-9]+
@@ -154,6 +155,10 @@ IGUAL = "="
 {MIN}  { 
     reporte.TablaTokens.add(new Token("MIN", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.MIN, yycolumn, yyline, yytext()); 
+}
+{COLUMN}  { 
+    reporte.TablaTokens.add(new Token("COLUMN", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.COLUMN, yycolumn, yyline, yytext()); 
 }
 
 /*-----PRÍNCIPAL-----*/

@@ -55,6 +55,7 @@ terminal String MODA;
 terminal String VARIANZA;
 terminal String MAX;
 terminal String MIN;
+terminal String COLUMN;
 
 /*-----PRÍNCIPAL-----*/
 terminal String ENTERO;
@@ -92,6 +93,7 @@ non terminal operacion_aritmetica;
 non terminal operacion;
 non terminal double_aritmetica;
 non terminal print;
+non terminal print_array;
 non terminal operacion_estadistica;
 
 //------> Definir Simbolo Inicial
@@ -110,9 +112,17 @@ lista_instrucciones ::= instruccion
 instruccion ::= variable 
         | array 
         | print
+        | print_array
 ;
 
-print ::= CONSOLE DOS_PUNTOS DOS_PUNTOS IMPRIMIR IGUAL lista_expresiones:listaexp FIN_DECLARACION PUNTO_COMA {: resultado = Instrucciones.Impresión.instrucciónPrint((ArrayList<String>) listaexp); :}
+print ::= CONSOLE DOS_PUNTOS DOS_PUNTOS IMPRIMIR IGUAL lista_expresiones:listaexp FIN_DECLARACION PUNTO_COMA {: 
+                        resultado = Instrucciones.Impresión.instrucciónPrint((ArrayList<String>) listaexp); :}
+;
+
+print_array ::= CONSOLE DOS_PUNTOS DOS_PUNTOS COLUMN IGUAL expresion:titulo GUION MAYORQUE expresion:nombreArray FIN_DECLARACION PUNTO_COMA {: 
+                        resultado = Instrucciones.ImpresiónArreglos.imprimirArregloPorNombre(titulo.toString(), nombreArray.toString()); :}
+        | CONSOLE DOS_PUNTOS DOS_PUNTOS COLUMN IGUAL expresion:titulo GUION MAYORQUE CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {: 
+                        resultado = Instrucciones.ImpresiónArreglos.imprimirArreglo(titulo.toString(), (ArrayList<String>) listaexp); :}
 ;
 
 operacion_aritmetica ::= operacion:op PARENTESIS_APERTURA expresion:izq COMA expresion:der PARENTESIS_CIERRE {: 
