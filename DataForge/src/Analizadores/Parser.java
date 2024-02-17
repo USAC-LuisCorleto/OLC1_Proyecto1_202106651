@@ -247,7 +247,7 @@ public class Parser extends java_cup.runtime.lr_parser {
     public void syntax_error(Symbol s)
     {
             System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
-            ReporteErrores.TablaErroresSintácticos.add(new ErrorObj("Sintáctico", s.value.toString(), Integer.toString(s.right), Integer.toString(s.left))); 
+            ReporteErrores.TablaErroresSintácticos.add(new ErrorObj("Sintáctico", "El caracter: '" + s.value.toString() + "' no cumple las reglas del lenguaje.", Integer.toString(s.right), Integer.toString(s.left))); 
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
@@ -428,6 +428,9 @@ class CUP$Parser$actions {
           case 12: // operacion_estadistica ::= MEDIA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE 
             {
               Object RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("operacion_estadistica",13, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -437,6 +440,9 @@ class CUP$Parser$actions {
           case 13: // operacion_estadistica ::= MEDIANA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE 
             {
               Object RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("operacion_estadistica",13, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -446,6 +452,9 @@ class CUP$Parser$actions {
           case 14: // operacion_estadistica ::= MODA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE 
             {
               Object RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("operacion_estadistica",13, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -455,6 +464,9 @@ class CUP$Parser$actions {
           case 15: // operacion_estadistica ::= VARIANZA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE 
             {
               Object RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("operacion_estadistica",13, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -464,6 +476,9 @@ class CUP$Parser$actions {
           case 16: // operacion_estadistica ::= MAX PARENTESIS_APERTURA expresion PARENTESIS_CIERRE 
             {
               Object RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("operacion_estadistica",13, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -473,6 +488,9 @@ class CUP$Parser$actions {
           case 17: // operacion_estadistica ::= MIN PARENTESIS_APERTURA expresion PARENTESIS_CIERRE 
             {
               Object RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("operacion_estadistica",13, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -482,6 +500,9 @@ class CUP$Parser$actions {
           case 18: // variable ::= VAR DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_VAR MENORQUE GUION expresion FIN_DECLARACION PUNTO_COMA 
             {
               Object RESULT =null;
+		int tipoVarleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-8)).left;
+		int tipoVarright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-8)).right;
+		Object tipoVar = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-8)).value;
 		int idleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)).left;
 		int idright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)).right;
 		String id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-5)).value;
@@ -489,6 +510,7 @@ class CUP$Parser$actions {
 		int valorright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		Object valor = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		 
+                        Instrucciones.Variables.datosReporteVariables(id.toString(), (String) tipoVar, valor.toString());
                         System.out.println("Asignando valor a la variable " + id.toString() + ": " + valor.toString());
                         Instrucciones.Variables.asignarVariable(id.toString(), valor.toString()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("variable",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -559,6 +581,9 @@ class CUP$Parser$actions {
           case 24: // array ::= ARRAY DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_ARRAY MENORQUE GUION CORCHETE_APERTURA lista_expresiones CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA 
             {
               Object RESULT =null;
+		int tipoArrleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)).left;
+		int tipoArrright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)).right;
+		Object tipoArr = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-10)).value;
 		int idleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)).left;
 		int idright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)).right;
 		String id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-7)).value;
@@ -574,6 +599,7 @@ class CUP$Parser$actions {
                         if (expresiones.length() > 2) { 
                             expresiones = expresiones.substring(0, expresiones.length() - 2);
                         }
+                        Instrucciones.Arreglos.datosReporteArreglo(id.toString(), (String) tipoArr, (ArrayList<String>) listaexp);
                         System.out.println("Asignando valores a la variable " + id.toString() + ": [" + expresiones + "]");
                         Instrucciones.Arreglos.asignarArray(id.toString(),(ArrayList<String>) listaexp); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("array",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-12)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -584,7 +610,10 @@ class CUP$Parser$actions {
           case 25: // tipo ::= DOUBLE 
             {
               Object RESULT =null;
-
+		int tipleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int tipright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String tip = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 System.out.println(tip); RESULT = tip.toString(); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("tipo",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -593,7 +622,10 @@ class CUP$Parser$actions {
           case 26: // tipo ::= CHAR 
             {
               Object RESULT =null;
-
+		int tipleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int tipright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String tip = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 System.out.println(tip); RESULT = tip.toString(); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("tipo",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

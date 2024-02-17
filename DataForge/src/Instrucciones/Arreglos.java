@@ -20,7 +20,7 @@ public class Arreglos {
             }
         }
         arreglos.put(nombre, valoresAsignados);
-        ReporteSímbolos.TablaSímbolosArreglos.add(new SímbolosA(nombre, valoresAsignados));
+        
     }
 
     public static ArrayList<String> obtenerArray(String nombre) {
@@ -29,5 +29,9 @@ public class Arreglos {
 
     public static boolean existeArray(String nombre) {
         return arreglos.containsKey(nombre);
+    }
+    
+    public static void datosReporteArreglo(String nombre, String tipo, ArrayList<String> valores){
+        ReporteSímbolos.TablaSímbolosArreglos.add(new SímbolosA(nombre, tipo, valores));
     }
 }

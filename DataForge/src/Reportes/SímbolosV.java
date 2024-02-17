@@ -2,10 +2,11 @@ package Reportes;
 
 public class SímbolosV {
 
-    String nombre, valor;
+    String nombre, tipo, valor;
 
-    public SímbolosV(String nombre, String valor) {
+    public SímbolosV(String nombre, String tipo, String valor) {
         this.nombre = nombre;
+        this.tipo = tipo;
         this.valor = valor;
     }
 
@@ -15,6 +16,14 @@ public class SímbolosV {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getValor() {

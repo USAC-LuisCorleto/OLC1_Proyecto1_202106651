@@ -2,12 +2,12 @@ package Reportes;
 
 public class ErrorObj {
 
-    String tipo, lexema, fila, columna;
+    String tipo, descripcion, fila, columna;
 
-    public ErrorObj(String tipo, String lexema, String línea, String columna) {
+    public ErrorObj(String tipo, String descripcion, String fila, String columna) {
         this.tipo = tipo;
-        this.lexema = lexema;
-        this.fila = línea;
+        this.descripcion = descripcion;
+        this.fila = fila;
         this.columna = columna;
     }
 
@@ -19,19 +19,19 @@ public class ErrorObj {
         this.tipo = tipo;
     }
 
-    public String getLexema() {
-        return lexema;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setLexema(String lexema) {
-        this.lexema = lexema;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getLínea() {
+    public String getFila() {
         return fila;
     }
 
-    public void setLínea(String fila) {
+    public void setFila(String fila) {
         this.fila = fila;
     }
 
@@ -42,5 +42,4 @@ public class ErrorObj {
     public void setColumna(String columna) {
         this.columna = columna;
     }
-
 }

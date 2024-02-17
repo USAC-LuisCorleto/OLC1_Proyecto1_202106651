@@ -17,7 +17,7 @@ parser code
     public void syntax_error(Symbol s)
     {
             System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
-            ReporteErrores.TablaErroresSintácticos.add(new ErrorObj("Sintáctico", s.value.toString(), Integer.toString(s.right), Integer.toString(s.left))); 
+            ReporteErrores.TablaErroresSintácticos.add(new ErrorObj("Sintáctico", "El caracter: '" + s.value.toString() + "' no cumple las reglas del lenguaje.", Integer.toString(s.right), Integer.toString(s.left))); 
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
@@ -129,15 +129,16 @@ operacion_aritmetica ::= operacion:op PARENTESIS_APERTURA expresion:izq COMA exp
                         RESULT = Instrucciones.Aritméticas.realizarOperación(op.toString(), izq.toString(), der.toString() ); :}
 ;
 
-operacion_estadistica ::= MEDIA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
-        | MEDIANA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
-        | MODA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
-        | VARIANZA PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
-        | MAX PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
-        | MIN PARENTESIS_APERTURA expresion PARENTESIS_CIERRE
+operacion_estadistica ::= MEDIA PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
+        | MEDIANA PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
+        | MODA PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
+        | VARIANZA PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
+        | MAX PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
+        | MIN PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
 ;
 
-variable ::= VAR DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_VAR:id MENORQUE GUION expresion:valor FIN_DECLARACION PUNTO_COMA {: 
+variable ::= VAR DOS_PUNTOS tipo:tipoVar DOS_PUNTOS DOS_PUNTOS ID_VAR:id MENORQUE GUION expresion:valor FIN_DECLARACION PUNTO_COMA {: 
+                        Instrucciones.Variables.datosReporteVariables(id.toString(), (String) tipoVar, valor.toString());
                         System.out.println("Asignando valor a la variable " + id.toString() + ": " + valor.toString());
                         Instrucciones.Variables.asignarVariable(id.toString(), valor.toString()); :}
 ;
@@ -149,7 +150,7 @@ operacion ::= SUMA:val          {: RESULT = val.toString(); :}
         | MODULO:val            {: RESULT = val.toString(); :}
 ;
 
-array ::= ARRAY DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_ARRAY:id MENORQUE GUION CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {:
+array ::= ARRAY DOS_PUNTOS tipo:tipoArr DOS_PUNTOS DOS_PUNTOS ID_ARRAY:id MENORQUE GUION CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {:
                         StringBuilder sb = new StringBuilder();
                         for (String expresion : (ArrayList<String>) listaexp) {
                             sb.append(expresion).append(", "); 
@@ -158,12 +159,13 @@ array ::= ARRAY DOS_PUNTOS tipo DOS_PUNTOS DOS_PUNTOS ID_ARRAY:id MENORQUE GUION
                         if (expresiones.length() > 2) { 
                             expresiones = expresiones.substring(0, expresiones.length() - 2);
                         }
+                        Instrucciones.Arreglos.datosReporteArreglo(id.toString(), (String) tipoArr, (ArrayList<String>) listaexp);
                         System.out.println("Asignando valores a la variable " + id.toString() + ": [" + expresiones + "]");
                         Instrucciones.Arreglos.asignarArray(id.toString(),(ArrayList<String>) listaexp); :}
 ;
 
-tipo ::= DOUBLE
-        | CHAR
+tipo ::= DOUBLE:tip    {: System.out.println(tip); RESULT = tip.toString(); :}
+        | CHAR:tip     {: System.out.println(tip); RESULT = tip.toString(); :}
 ;
 
 lista_expresiones ::= expresion:val {: 

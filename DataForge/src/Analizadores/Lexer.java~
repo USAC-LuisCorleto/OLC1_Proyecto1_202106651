@@ -816,7 +816,7 @@ public class Lexer implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { reporteE.TablaErroresLéxicos.add(new ErrorObj("Léxico", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+            { reporteE.TablaErroresLéxicos.add(new ErrorObj("Léxico", "El caracter " + yytext() + " no pertenece al lenguaje.", Integer.toString(yyline), Integer.toString(yycolumn))); 
     System.out.println("Error Lexico: " + yytext() + " | Fila:" + yyline + " | Columna: " + yycolumn);
             }
           // fall through

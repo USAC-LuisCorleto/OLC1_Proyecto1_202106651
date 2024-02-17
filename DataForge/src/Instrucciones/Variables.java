@@ -10,7 +10,6 @@ public class Variables {
 
     public static void asignarVariable(String nombre, String valor) {
         variables.put(nombre, valor);
-        ReporteSímbolos.TablaSímbolosVariables.add(new SímbolosV(nombre, valor));
     }
 
     public static String obtenerVariable(String nombre) {
@@ -23,5 +22,9 @@ public class Variables {
 
     public static HashMap<String, String> obtenerVariables() {
         return variables;
+    }
+    
+    public static void datosReporteVariables(String nombre, String tipo, String valor){
+        ReporteSímbolos.TablaSímbolosVariables.add(new SímbolosV(nombre, tipo, valor));
     }
 }

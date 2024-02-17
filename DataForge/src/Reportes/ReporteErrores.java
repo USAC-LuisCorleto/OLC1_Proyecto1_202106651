@@ -71,14 +71,14 @@ public class ReporteErrores {
             archivo.write("<body>\n");
 
             archivo.write("<table border=\"1\">\n");
-            archivo.write("<tr><th>#</th><th>Tipo</th><th>Lexema</th><th>Línea</th><th>Columna</th></tr>\n");
+            archivo.write("<tr><th>#</th><th>Tipo</th><th>Descripción</th><th>Línea</th><th>Columna</th></tr>\n");
 
             for (ErrorObj error : TablaErroresLéxicos) {
                 archivo.write("<tr>");
                 archivo.write("<td>" + contador + "</td>");
                 archivo.write("<td>" + error.getTipo() + "</td>");
-                archivo.write("<td>" + error.getLexema() + "</td>");
-                archivo.write("<td>" + error.getLínea() + "</td>");
+                archivo.write("<td>" + error.getDescripcion() + "</td>");
+                archivo.write("<td>" + error.getFila() + "</td>");
                 archivo.write("<td>" + error.getColumna() + "</td>");
                 archivo.write("</tr>\n");
                 contador++;
@@ -88,8 +88,8 @@ public class ReporteErrores {
                 archivo.write("<tr>");
                 archivo.write("<td>" + contador + "</td>");
                 archivo.write("<td>" + error.getTipo() + "</td>");
-                archivo.write("<td>" + error.getLexema() + "</td>");
-                archivo.write("<td>" + error.getLínea() + "</td>");
+                archivo.write("<td>" + error.getDescripcion() + "</td>");
+                archivo.write("<td>" + error.getFila() + "</td>");
                 archivo.write("<td>" + error.getColumna() + "</td>");
                 archivo.write("</tr>\n");
                 contador++; 

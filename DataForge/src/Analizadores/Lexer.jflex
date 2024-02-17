@@ -241,5 +241,5 @@ IGUAL = "="
 
 //------> Errores Léxicos 
 .           	{ 
-    reporteE.TablaErroresLéxicos.add(new ErrorObj("Léxico", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    reporteE.TablaErroresLéxicos.add(new ErrorObj("Léxico", "El caracter " + yytext() + " no pertenece al lenguaje.", Integer.toString(yyline), Integer.toString(yycolumn))); 
     System.out.println("Error Lexico: " + yytext() + " | Fila:" + yyline + " | Columna: " + yycolumn); }

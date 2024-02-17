@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 public class SímbolosA {
 
-    String nombre;
+    String nombre, tipo;
     ArrayList<String> valores;
 
-    public SímbolosA(String nombre, ArrayList<String> valores) {
+    public SímbolosA(String nombre, String tipo, ArrayList<String> valores) {
         this.nombre = nombre;
+        this.tipo = tipo;
         this.valores = valores;
     }
 
@@ -18,6 +19,14 @@ public class SímbolosA {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public ArrayList<String> getValores() {

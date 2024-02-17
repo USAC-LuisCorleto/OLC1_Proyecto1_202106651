@@ -15,6 +15,7 @@ public class ReporteSímbolos {
 
     public static void generarReporteErrores() throws FileNotFoundException, IOException {
         String nombreArchivo = "Reporte de Símbolos.html";
+        int contador = 1;
 
         try (FileOutputStream archivoStream = new FileOutputStream(nombreArchivo); OutputStreamWriter escritorStream = new OutputStreamWriter(archivoStream, StandardCharsets.UTF_8); BufferedWriter archivo = new BufferedWriter(escritorStream)) {
 
@@ -70,21 +71,26 @@ public class ReporteSímbolos {
             archivo.write("<body>\n");
 
             archivo.write("<table border=\"1\">\n");
-            archivo.write("<tr><th>Nombre</th><th>Valor</th></tr>\n");
+            archivo.write("<tr><th>#</th><th>Nombre</th><th>Tipo</th><th>Valor</th></tr>\n");
 
             for (SímbolosV variables : TablaSímbolosVariables) {
                 archivo.write("<tr>");
+                archivo.write("<td>" + contador + "</td>");
                 archivo.write("<td>" + variables.getNombre() + "</td>");
+                archivo.write("<td>" + variables.getTipo() + "</td>");
                 archivo.write("<td>" + variables.getValor() + "</td>");
                 archivo.write("</tr>\n");
+                contador++;
             }
 
             for (SímbolosA arreglos : TablaSímbolosArreglos) {
                 archivo.write("<tr>");
+                archivo.write("<td>" + contador + "</td>");
                 archivo.write("<td>" + arreglos.getNombre() + "</td>");
+                archivo.write("<td>" + arreglos.getTipo() + "</td>");
                 archivo.write("<td>" + arreglos.getValores() + "</td>");
-
                 archivo.write("</tr>\n");
+                contador++;
             }
 
             archivo.write("</table>\n");
