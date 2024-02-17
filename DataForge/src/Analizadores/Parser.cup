@@ -95,6 +95,7 @@ non terminal double_aritmetica;
 non terminal print;
 non terminal print_array;
 non terminal operacion_estadistica;
+non terminal estadística;
 
 //------> Definir Simbolo Inicial
 start with inicio; 
@@ -129,12 +130,19 @@ operacion_aritmetica ::= operacion:op PARENTESIS_APERTURA expresion:izq COMA exp
                         RESULT = Instrucciones.Aritméticas.realizarOperación(op.toString(), izq.toString(), der.toString() ); :}
 ;
 
-operacion_estadistica ::= MEDIA PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
-        | MEDIANA PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
-        | MODA PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
-        | VARIANZA PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
-        | MAX PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
-        | MIN PARENTESIS_APERTURA expresion:val PARENTESIS_CIERRE
+operacion_estadistica ::= estadística:op PARENTESIS_APERTURA expresion:exp PARENTESIS_CIERRE {: 
+                        ArrayList<String> valores = Instrucciones.Arreglos.obtenerArray(exp.toString());
+                        RESULT = Instrucciones.Estadísticas.realizarOperaciónEstadística(op.toString(), valores);:}
+        | estadística:op PARENTESIS_APERTURA CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE PARENTESIS_CIERRE {: 
+                        RESULT = Instrucciones.Estadísticas.realizarOperaciónEstadística(op.toString(), (ArrayList<String>) listaexp); :}
+;
+
+estadística ::= MEDIA:val   {: RESULT = val.toString(); :}
+        | MEDIANA:val       {: RESULT = val.toString(); :}
+        | MODA:val          {: RESULT = val.toString(); :}
+        | VARIANZA:val      {: RESULT = val.toString(); :}
+        | MAX:val           {: RESULT = val.toString(); :}
+        | MIN:val           {: RESULT = val.toString(); :}
 ;
 
 variable ::= VAR DOS_PUNTOS tipo:tipoVar DOS_PUNTOS DOS_PUNTOS ID_VAR:id MENORQUE GUION expresion:valor FIN_DECLARACION PUNTO_COMA {: 
