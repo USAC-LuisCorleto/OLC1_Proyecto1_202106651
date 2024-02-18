@@ -47,6 +47,13 @@ VARIANZA = "Varianza"
 MAX = "Max"
 MIN = "Min"
 COLUMN = "column"
+EJECUTAR = "EXEC"
+GBARRAS = "graphBar"
+GTITULO = "titulo"
+X = "ejeX"
+Y = "ejeY"
+tX = "tituloX"
+tY = "tituloY"
 
 /*-----PRÍNCIPAL-----*/
 ENTERO = [0-9]+
@@ -159,6 +166,34 @@ IGUAL = "="
 {COLUMN}  { 
     reporte.TablaTokens.add(new Token("COLUMN", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.COLUMN, yycolumn, yyline, yytext()); 
+}
+{EJECUTAR}  { 
+    reporte.TablaTokens.add(new Token("EJECUTAR", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.EJECUTAR, yycolumn, yyline, yytext()); 
+}
+{GBARRAS}  { 
+    reporte.TablaTokens.add(new Token("GBARRAS", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.GBARRAS, yycolumn, yyline, yytext()); 
+}
+{GTITULO}  { 
+    reporte.TablaTokens.add(new Token("GTITULO", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.GTITULO, yycolumn, yyline, yytext()); 
+}
+{X}  { 
+    reporte.TablaTokens.add(new Token("ejeX", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.X, yycolumn, yyline, yytext()); 
+}
+{Y}  { 
+    reporte.TablaTokens.add(new Token("ejeY", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.Y, yycolumn, yyline, yytext()); 
+}
+{tX}  { 
+    reporte.TablaTokens.add(new Token("tituloX", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.tX, yycolumn, yyline, yytext()); 
+}
+{tY}  { 
+    reporte.TablaTokens.add(new Token("tituloY", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.tY, yycolumn, yyline, yytext()); 
 }
 
 /*-----PRÍNCIPAL-----*/

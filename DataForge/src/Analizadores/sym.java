@@ -8,43 +8,50 @@ package Analizadores;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int ID_VAR = 26;
-  public static final int PARENTESIS_CIERRE = 32;
+  public static final int ID_VAR = 33;
+  public static final int Y = 27;
+  public static final int X = 26;
+  public static final int PARENTESIS_CIERRE = 39;
   public static final int CHAR = 7;
   public static final int IMPRIMIR = 15;
-  public static final int ID_ARRAY = 27;
-  public static final int ENTERO = 23;
+  public static final int ID_ARRAY = 34;
+  public static final int ENTERO = 30;
   public static final int DOUBLE = 6;
   public static final int RESTA = 10;
-  public static final int DOS_PUNTOS = 33;
+  public static final int DOS_PUNTOS = 40;
+  public static final int tY = 29;
+  public static final int tX = 28;
   public static final int ARRAY = 8;
-  public static final int IGUAL = 39;
-  public static final int MAYORQUE = 36;
-  public static final int CORCHETE_CIERRE = 30;
+  public static final int IGUAL = 46;
+  public static final int MAYORQUE = 43;
+  public static final int CORCHETE_CIERRE = 37;
   public static final int COLUMN = 22;
-  public static final int LETRA = 25;
+  public static final int LETRA = 32;
   public static final int FIN_CODIGO = 3;
-  public static final int GUION = 37;
+  public static final int GUION = 44;
   public static final int SUMA = 9;
   public static final int MIN = 21;
-  public static final int PUNTO_COMA = 34;
+  public static final int PUNTO_COMA = 41;
   public static final int MEDIANA = 17;
   public static final int EOF = 0;
-  public static final int DECIMAL = 24;
-  public static final int CORCHETE_APERTURA = 29;
+  public static final int DECIMAL = 31;
+  public static final int CORCHETE_APERTURA = 36;
+  public static final int GBARRAS = 24;
   public static final int error = 1;
-  public static final int COMA = 38;
-  public static final int CADENA = 28;
+  public static final int COMA = 45;
+  public static final int CADENA = 35;
+  public static final int GTITULO = 25;
   public static final int MODULO = 13;
   public static final int MODA = 18;
   public static final int FIN_DECLARACION = 4;
-  public static final int MENORQUE = 35;
+  public static final int MENORQUE = 42;
   public static final int VARIANZA = 19;
   public static final int MEDIA = 16;
-  public static final int PARENTESIS_APERTURA = 31;
+  public static final int PARENTESIS_APERTURA = 38;
   public static final int INICIO_CODIGO = 2;
   public static final int DIVISION = 12;
   public static final int MAX = 20;
+  public static final int EJECUTAR = 23;
   public static final int VAR = 5;
   public static final int CONSOLE = 14;
   public static final int MULTIPLICACION = 11;
@@ -72,6 +79,13 @@ public class sym {
   "MAX",
   "MIN",
   "COLUMN",
+  "EJECUTAR",
+  "GBARRAS",
+  "GTITULO",
+  "X",
+  "Y",
+  "tX",
+  "tY",
   "ENTERO",
   "DECIMAL",
   "LETRA",

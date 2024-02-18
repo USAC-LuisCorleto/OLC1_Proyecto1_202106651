@@ -56,6 +56,13 @@ terminal String VARIANZA;
 terminal String MAX;
 terminal String MIN;
 terminal String COLUMN;
+terminal String EJECUTAR;
+terminal String GBARRAS;
+terminal String GTITULO;
+terminal String X;
+terminal String Y;
+terminal String tX;
+terminal String tY;
 
 /*-----PRÍNCIPAL-----*/
 terminal String ENTERO;
@@ -96,6 +103,13 @@ non terminal print;
 non terminal print_array;
 non terminal operacion_estadistica;
 non terminal estadística;
+non terminal graficar;
+non terminal tipografica;
+non terminal titulo;
+non terminal ejex;
+non terminal ejey;
+non terminal titx;
+non terminal tity;
 
 //------> Definir Simbolo Inicial
 start with inicio; 
@@ -114,6 +128,31 @@ instruccion ::= variable
         | array 
         | print
         | print_array
+        | graficar
+;
+
+graficar ::= tipografica:grafica PARENTESIS_APERTURA titulo:tit ejex:listax ejey:listay titx:titx tity:tity EJECUTAR tipografica FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
+                        Instrucciones.GráficaBarras.generarGráfica(grafica.toString(), tit.toString(), (ArrayList<String>) listax, (ArrayList<String>) listay, titx.toString(), tity.toString()); :}
+;
+
+tipografica ::= GBARRAS:val {: RESULT = val.toString(); :}
+;
+
+titulo ::= GTITULO DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CADENA:val FIN_DECLARACION PUNTO_COMA {: RESULT = val.toString(); :}
+;
+
+ejex ::= X DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {: RESULT = (ArrayList<String>) listaexp; :}
+        | X DOS_PUNTOS DOS_PUNTOS CHAR IGUAL expresion FIN_DECLARACION PUNTO_COMA
+;
+
+ejey ::= Y DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {: RESULT = (ArrayList<String>) listaexp; :}
+        | Y DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL expresion FIN_DECLARACION PUNTO_COMA
+;
+
+titx ::= tX DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CADENA:val FIN_DECLARACION PUNTO_COMA {: RESULT = val.toString(); :}
+;
+
+tity ::= tY DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CADENA:val FIN_DECLARACION PUNTO_COMA {: RESULT = val.toString(); :}
 ;
 
 print ::= CONSOLE DOS_PUNTOS DOS_PUNTOS IMPRIMIR IGUAL lista_expresiones:listaexp FIN_DECLARACION PUNTO_COMA {: 

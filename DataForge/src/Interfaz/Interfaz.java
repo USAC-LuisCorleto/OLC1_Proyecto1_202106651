@@ -1,25 +1,33 @@
 package Interfaz;
 
 import Analizadores.Parser;
+import Instrucciones.GráficaBarras;
+import java.awt.BorderLayout;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 
 public class Interfaz extends javax.swing.JFrame {
 
     java.util.HashMap<JScrollPane, File> archivosAbiertos = new java.util.HashMap<>();
+    private ArrayList<JFreeChart> listaGráficas;
+    private int gráficaActualIndex;
 
     public Interfaz() {
         initComponents();
+        gráficaActualIndex = 0;
     }
 
     @SuppressWarnings("unchecked")
@@ -28,7 +36,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        panelGráficas = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         botónAnterior = new javax.swing.JButton();
         botónSiguiente = new javax.swing.JButton();
@@ -56,14 +64,14 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Entrada");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelGráficasLayout = new javax.swing.GroupLayout(panelGráficas);
+        panelGráficas.setLayout(panelGráficasLayout);
+        panelGráficasLayout.setHorizontalGroup(
+            panelGráficasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelGráficasLayout.setVerticalGroup(
+            panelGráficasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -71,8 +79,18 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel2.setText("Gráficas");
 
         botónAnterior.setText("Anterior");
+        botónAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botónAnteriorActionPerformed(evt);
+            }
+        });
 
         botónSiguiente.setText("Siguiente");
+        botónSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botónSiguienteActionPerformed(evt);
+            }
+        });
 
         consolaArchivo.setEditable(false);
         consolaArchivo.setColumns(20);
@@ -99,7 +117,7 @@ public class Interfaz extends javax.swing.JFrame {
                             .addComponent(panelArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelGráficas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -118,7 +136,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelGráficas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelArchivos, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,6 +374,7 @@ public class Interfaz extends javax.swing.JFrame {
             analizar(textoArchivo);
             String textoSalida = Analizadores.Parser.resultado;
             consolaArchivo.setText(textoSalida);
+            mostrarGráficaActual();
         }
     }//GEN-LAST:event_itemBarEjecutarMouseClicked
 
@@ -387,6 +406,35 @@ public class Interfaz extends javax.swing.JFrame {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_reporteSímbolosActionPerformed
+
+    private void mostrarGráficaActual() {
+        listaGráficas = GráficaBarras.getListaGráficas();
+
+        panelGráficas.removeAll();
+        if (!listaGráficas.isEmpty()) {
+            JFreeChart chart = listaGráficas.get(gráficaActualIndex);
+            ChartPanel chartPanel = new ChartPanel(chart);
+            chartPanel.setPreferredSize(panelGráficas.getSize());
+            panelGráficas.setLayout(new BorderLayout());
+            panelGráficas.add(chartPanel);
+        }
+        panelGráficas.revalidate();
+        panelGráficas.repaint();
+    }
+
+    private void botónSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botónSiguienteActionPerformed
+        if (!listaGráficas.isEmpty()) {
+            gráficaActualIndex = (gráficaActualIndex - 1 + listaGráficas.size()) % listaGráficas.size();
+            mostrarGráficaActual();
+        }
+    }//GEN-LAST:event_botónSiguienteActionPerformed
+
+    private void botónAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botónAnteriorActionPerformed
+        if (!listaGráficas.isEmpty()) {
+            gráficaActualIndex = (gráficaActualIndex + 1) % listaGráficas.size();
+            mostrarGráficaActual();
+        }
+    }//GEN-LAST:event_botónAnteriorActionPerformed
 
     private boolean verificarCambiosNoGuardados(JTextArea textArea) {
         return textArea.getDocument().getLength() != 0;
@@ -442,13 +490,13 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenuItem menúAbrir;
     private javax.swing.JMenuItem menúEliminar;
     private javax.swing.JMenuItem menúGuardar;
     private javax.swing.JMenuItem menúNuevo;
     private javax.swing.JTabbedPane panelArchivos;
+    private javax.swing.JPanel panelGráficas;
     private javax.swing.JMenuItem reporteErrores;
     private javax.swing.JMenuItem reporteSímbolos;
     private javax.swing.JMenuItem reporteTokens;

@@ -170,7 +170,7 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel2" max="32767" attributes="0"/>
+                              <Component id="panelGráficas" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -197,7 +197,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanel2" max="32767" attributes="0"/>
+                      <Component id="panelGráficas" max="32767" attributes="0"/>
                       <Component id="panelArchivos" pref="295" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -224,7 +224,7 @@
             <Property name="text" type="java.lang.String" value="Entrada"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="panelGr&#xe1;ficas">
 
           <Layout>
             <DimensionLayout dim="0">
@@ -251,11 +251,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Anterior"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bot&#xf3;nAnteriorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bot&#xf3;nSiguiente">
           <Properties>
             <Property name="text" type="java.lang.String" value="Siguiente"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bot&#xf3;nSiguienteActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>
