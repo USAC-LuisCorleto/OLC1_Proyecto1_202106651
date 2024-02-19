@@ -58,7 +58,6 @@ tY = "tituloY"
 LABEL = "label"
 VALUES = "values"
 
-
 /*-----PRÍNCIPAL-----*/
 ENTERO = [0-9]+
 DECIMAL = [0-9]+(\.[0-9]+)?
@@ -83,9 +82,13 @@ GUION = "-"
 COMA = ","
 IGUAL = "="
 
+/*-----COMENTARIOS-----*/
+COMLINEA = \!.*
+COMLINEAS = \<\!([^"!>"]|[\r|\f|\s|\t|\n])*\!\>
 
 %%
 // ------------  Reglas Lexicas -------------------
+
 /*-----PALABRAS RESERVADAS-----*/
 {INICIO_CODIGO}  { 
     reporte.TablaTokens.add(new Token("INICIO_CODIGO", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
@@ -286,9 +289,12 @@ IGUAL = "="
     return new Symbol(sym.IGUAL, yycolumn, yyline, yytext()); 
 }
 
-
 //------> Ingorados 
 [ \t\r\n\f]     {/* Espacios en blanco se ignoran */}
+/*-----COMENTARIOS-----*/
+{COMLINEA}  { }
+{COMLINEAS}  { }
+
 
 //------> Errores Léxicos 
 .           	{ 

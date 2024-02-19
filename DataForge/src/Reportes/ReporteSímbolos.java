@@ -97,6 +97,6 @@ public class ReporteSímbolos {
             archivo.write("</body>\n");
             archivo.write("</html>\n");
         }
-        System.out.println("El reporte de errores se ha generado correctamente en " + nombreArchivo);
+        System.out.println("El reporte de símbolos se ha generado correctamente en " + nombreArchivo);
     }
 }

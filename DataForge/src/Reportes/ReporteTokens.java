@@ -86,6 +86,6 @@ public class ReporteTokens {
             archivo.write("</body>\n");
             archivo.write("</html>\n");
         }
-        System.out.println("El reporte de símbolos se ha generado correctamente en " + nombreArchivo);
+        System.out.println("El reporte de tokens se ha generado correctamente en " + nombreArchivo);
     }
 }
