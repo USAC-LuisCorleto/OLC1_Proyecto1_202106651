@@ -13,11 +13,11 @@ public class ImpresiónArreglos {
         }
 
         consola.append("--------------").append(System.lineSeparator());
-        consola.append(titulo).append(System.lineSeparator());
+        consola.append(titulo.replaceAll("\"", "")).append(System.lineSeparator()); 
         consola.append("--------------").append(System.lineSeparator());
 
         for (String elemento : arreglo) {
-            consola.append(elemento).append(System.lineSeparator());
+            consola.append(elemento.replaceAll("\"", "")).append(System.lineSeparator()); 
         }
 
         resultado += consola.toString();
@@ -34,11 +34,11 @@ public class ImpresiónArreglos {
         ArrayList<String> arreglo = Arreglos.obtenerArray(nombreArreglo);
 
         consola.append("--------------").append(System.lineSeparator());
-        consola.append(titulo).append(System.lineSeparator());
+        consola.append(titulo.replaceAll("\"", "")).append(System.lineSeparator()); 
         consola.append("--------------").append(System.lineSeparator());
 
         for (String elemento : arreglo) {
-            consola.append(elemento).append(System.lineSeparator());
+            consola.append(elemento.replaceAll("\"", "")).append(System.lineSeparator()); 
         }
 
         resultado += consola.toString();
