@@ -49,11 +49,15 @@ MIN = "Min"
 COLUMN = "column"
 EJECUTAR = "EXEC"
 GBARRAS = "graphBar"
+GPIE = "graphPie"
 GTITULO = "titulo"
 X = "ejeX"
 Y = "ejeY"
 tX = "tituloX"
 tY = "tituloY"
+LABEL = "label"
+VALUES = "values"
+
 
 /*-----PRÍNCIPAL-----*/
 ENTERO = [0-9]+
@@ -175,6 +179,10 @@ IGUAL = "="
     reporte.TablaTokens.add(new Token("GBARRAS", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.GBARRAS, yycolumn, yyline, yytext()); 
 }
+{GPIE}  { 
+    reporte.TablaTokens.add(new Token("GPIE", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.GPIE, yycolumn, yyline, yytext()); 
+}
 {GTITULO}  { 
     reporte.TablaTokens.add(new Token("GTITULO", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.GTITULO, yycolumn, yyline, yytext()); 
@@ -194,6 +202,14 @@ IGUAL = "="
 {tY}  { 
     reporte.TablaTokens.add(new Token("tituloY", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.tY, yycolumn, yyline, yytext()); 
+}
+{LABEL}  { 
+    reporte.TablaTokens.add(new Token("LABEL", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.LABEL, yycolumn, yyline, yytext()); 
+}
+{VALUES}  { 
+    reporte.TablaTokens.add(new Token("VALUES", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.VALUES, yycolumn, yyline, yytext()); 
 }
 
 /*-----PRÍNCIPAL-----*/

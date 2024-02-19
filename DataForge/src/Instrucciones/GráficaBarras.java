@@ -7,7 +7,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class GráficaBarras {
 
-    private static ArrayList<JFreeChart> listaGráficas = new ArrayList<>();
+    static ArrayList<JFreeChart> listaGráficas = new ArrayList<>();
 
     public static JFreeChart generarGráfica(String tipo, String titulo, ArrayList<String> valoresEjeX, ArrayList<String> valoresEjeY, String tituloX, String tituloY) {
         switch (tipo) {

@@ -5,6 +5,8 @@ import java_cup.runtime.*;
 import java.util.ArrayList;
 import Reportes.ReporteErrores;
 import Reportes.ErrorObj;
+import java.util.HashMap;
+import java.util.Map;
 
 
 //------> Codigo para el parser
@@ -12,6 +14,13 @@ import Reportes.ErrorObj;
 
 parser code 
 {:
+    private String tituloGlobal;
+    private ArrayList<String> ejexGlobal;
+    private ArrayList<String> ejeyGlobal;
+    private String titxGlobal;
+    private String tityGlobal;
+    private ArrayList<String> labGlobal;
+    private ArrayList<String> valsGlobal;
     public static String resultado = ""; 
 
     public void syntax_error(Symbol s)
@@ -58,11 +67,14 @@ terminal String MIN;
 terminal String COLUMN;
 terminal String EJECUTAR;
 terminal String GBARRAS;
+terminal String GPIE;
 terminal String GTITULO;
 terminal String X;
 terminal String Y;
 terminal String tX;
 terminal String tY;
+terminal String LABEL;
+terminal String VALUES;
 
 /*-----PRÍNCIPAL-----*/
 terminal String ENTERO;
@@ -104,12 +116,19 @@ non terminal print_array;
 non terminal operacion_estadistica;
 non terminal estadística;
 non terminal graficar;
-non terminal tipografica;
+non terminal graficaB;
+non terminal graficaP;
 non terminal titulo;
 non terminal ejex;
 non terminal ejey;
 non terminal titx;
 non terminal tity;
+non terminal lab;
+non terminal vals;
+non terminal lista_sentenciasB;
+non terminal lista_sentenciasP;
+non terminal sentenciaB;
+non terminal sentenciaP;
 
 //------> Definir Simbolo Inicial
 start with inicio; 
@@ -131,28 +150,82 @@ instruccion ::= variable
         | graficar
 ;
 
-graficar ::= tipografica:grafica PARENTESIS_APERTURA titulo:tit ejex:listax ejey:listay titx:titx tity:tity EJECUTAR tipografica FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
-                        Instrucciones.GráficaBarras.generarGráfica(grafica.toString(), tit.toString(), (ArrayList<String>) listax, (ArrayList<String>) listay, titx.toString(), tity.toString()); :}
+graficar ::= graficaB
+        | graficaP
 ;
 
-tipografica ::= GBARRAS:val {: RESULT = val.toString(); :}
+graficaB ::= GBARRAS:grafica PARENTESIS_APERTURA lista_sentenciasB EJECUTAR GBARRAS FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
+                        Instrucciones.GráficaBarras.generarGráfica(grafica.toString(), tituloGlobal, ejexGlobal, ejeyGlobal, titxGlobal, tityGlobal); :}
 ;
 
-titulo ::= GTITULO DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CADENA:val FIN_DECLARACION PUNTO_COMA {: RESULT = val.toString(); :}
+graficaP ::= GPIE:grafica PARENTESIS_APERTURA lista_sentenciasP EJECUTAR GPIE FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
+                        Instrucciones.GráficaPie.generarGráfica(grafica.toString(), labGlobal, valsGlobal, tituloGlobal); :}
 ;
 
-ejex ::= X DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {: RESULT = (ArrayList<String>) listaexp; :}
-        | X DOS_PUNTOS DOS_PUNTOS CHAR IGUAL expresion FIN_DECLARACION PUNTO_COMA
+lista_sentenciasB ::= sentenciaB:val {: 
+                        ArrayList<String> listaSenB = new ArrayList<>();
+                        listaSenB.add(val.toString());
+                        RESULT = listaSenB;  :}
+        | lista_sentenciasB:listaSenB sentenciaB:val {: 
+                        ((ArrayList<String>) listaSenB).add(val.toString());
+                        RESULT = listaSenB;  :}
 ;
 
-ejey ::= Y DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {: RESULT = (ArrayList<String>) listaexp; :}
-        | Y DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL expresion FIN_DECLARACION PUNTO_COMA
+lista_sentenciasP ::= sentenciaP:val {: 
+                        ArrayList<String> listaSenP = new ArrayList<>();
+                        listaSenP.add(val.toString());
+                        RESULT = listaSenP;  :}
+        | lista_sentenciasP:listaSenP sentenciaP:val {: 
+                        ((ArrayList<String>) listaSenP).add(val.toString());
+                        RESULT = listaSenP;  :}
 ;
 
-titx ::= tX DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CADENA:val FIN_DECLARACION PUNTO_COMA {: RESULT = val.toString(); :}
+sentenciaP ::= titulo:tit {: tituloGlobal = tit.toString(); RESULT = tituloGlobal; :}
+        | lab:lab         {: labGlobal = (ArrayList<String>) lab; RESULT = labGlobal; :}
+        | vals:vals       {: valsGlobal = (ArrayList<String>) vals; RESULT = valsGlobal; :}
 ;
 
-tity ::= tY DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CADENA:val FIN_DECLARACION PUNTO_COMA {: RESULT = val.toString(); :}
+sentenciaB ::= titulo:tit   {: tituloGlobal = tit.toString(); RESULT = tituloGlobal; :}
+        | ejex:ejex   {: ejexGlobal = (ArrayList<String>) ejex; RESULT = ejexGlobal; :}
+        | ejey:ejey   {: ejeyGlobal = (ArrayList<String>) ejey; RESULT = ejeyGlobal; :}
+        | titx:titx   {: titxGlobal = titx.toString(); RESULT = titxGlobal; :}
+        | tity:tity   {: tityGlobal = tity.toString(); RESULT = tityGlobal; :}
+;
+
+titulo ::= GTITULO DOS_PUNTOS DOS_PUNTOS CHAR IGUAL expresion:val FIN_DECLARACION PUNTO_COMA {: 
+                        RESULT = val.toString(); :}
+;
+
+ejex ::= X DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {: 
+                        RESULT = (ArrayList<String>) listaexp; :}
+        | X DOS_PUNTOS DOS_PUNTOS CHAR IGUAL expresion:exp FIN_DECLARACION PUNTO_COMA {:
+                        RESULT = Instrucciones.Arreglos.obtenerArray(exp.toString()); :}
+;
+
+ejey ::= Y DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {: 
+                        RESULT = (ArrayList<String>) listaexp; :}
+        | Y DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL expresion:exp FIN_DECLARACION PUNTO_COMA {:
+                        RESULT = Instrucciones.Arreglos.obtenerArray(exp.toString()); :}
+;
+
+titx ::= tX DOS_PUNTOS DOS_PUNTOS CHAR IGUAL expresion:val FIN_DECLARACION PUNTO_COMA {: 
+                        RESULT = val.toString(); :}
+;
+
+tity ::= tY DOS_PUNTOS DOS_PUNTOS CHAR IGUAL expresion:val FIN_DECLARACION PUNTO_COMA {: 
+                        RESULT = val.toString(); :}
+;
+
+lab ::= LABEL DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {: 
+                        RESULT = (ArrayList<String>) listaexp; :}
+        | LABEL DOS_PUNTOS DOS_PUNTOS CHAR IGUAL expresion:exp FIN_DECLARACION PUNTO_COMA {:
+                        RESULT = Instrucciones.Arreglos.obtenerArray(exp.toString()); :}
+;
+
+vals ::= VALUES DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {: 
+                        RESULT = (ArrayList<String>) listaexp; :}
+        | VALUES DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL expresion:exp FIN_DECLARACION PUNTO_COMA {:
+                        RESULT = Instrucciones.Arreglos.obtenerArray(exp.toString()); :}
 ;
 
 print ::= CONSOLE DOS_PUNTOS DOS_PUNTOS IMPRIMIR IGUAL lista_expresiones:listaexp FIN_DECLARACION PUNTO_COMA {: 
@@ -211,8 +284,8 @@ array ::= ARRAY DOS_PUNTOS tipo:tipoArr DOS_PUNTOS DOS_PUNTOS ID_ARRAY:id MENORQ
                         Instrucciones.Arreglos.asignarArray(id.toString(),(ArrayList<String>) listaexp); :}
 ;
 
-tipo ::= DOUBLE:tip    {: System.out.println(tip); RESULT = tip.toString(); :}
-        | CHAR:tip     {: System.out.println(tip); RESULT = tip.toString(); :}
+tipo ::= DOUBLE:tip    {: RESULT = tip.toString(); :}
+        | CHAR:tip     {: RESULT = tip.toString(); :}
 ;
 
 lista_expresiones ::= expresion:val {: 
