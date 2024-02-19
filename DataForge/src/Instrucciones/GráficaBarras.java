@@ -46,14 +46,12 @@ public class GráficaBarras {
             dataset.addValue(valoresY[i], tituloY, valoresEjeX.get(i));
         }
 
-        JFreeChart chart = ChartFactory.createBarChart(
+        return ChartFactory.createBarChart(
                 titulo,
                 tituloX,
                 tituloY,
                 dataset
         );
-
-        return chart;
     }
 
     public static ArrayList<JFreeChart> getListaGráficas() {

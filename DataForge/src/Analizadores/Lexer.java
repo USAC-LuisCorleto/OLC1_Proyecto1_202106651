@@ -119,13 +119,14 @@ public class Lexer implements java_cup.runtime.Scanner {
     "\1\41\3\23\1\0\1\42\2\23\1\0\1\23\1\0"+
     "\2\23\2\0\2\23\1\0\1\23\1\0\1\23\1\43"+
     "\2\44\1\45\1\23\1\45\1\23\1\0\2\23\1\0"+
-    "\1\46\1\47\1\23\1\0\1\50\1\0\3\23\1\0"+
+    "\1\46\1\47\1\23\1\0\1\50\1\0\4\23\1\0"+
     "\1\23\2\51\2\52\1\23\1\0\2\53\1\0\2\23"+
-    "\1\0\2\54\1\55\1\56\1\57\1\56\1\57\1\23"+
-    "\2\0\1\60\2\61\2\62\2\0\1\63";
+    "\1\0\1\23\1\0\2\54\1\55\1\56\1\57\1\56"+
+    "\1\57\1\23\2\0\1\60\1\23\1\0\2\61\2\62"+
+    "\1\0\2\63\1\0\1\64";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[175];
+    int [] result = new int[182];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -168,13 +169,14 @@ public class Lexer implements java_cup.runtime.Scanner {
     "\0\u1057\0\u1086\0\u10b5\0\u0178\0\u10e4\0\u1113\0\u0178\0\u1142"+
     "\0\57\0\u1171\0\u11a0\0\u11cf\0\u11fe\0\u122d\0\57\0\u0178"+
     "\0\u125c\0\u128b\0\u0178\0\u12ba\0\u12e9\0\u1318\0\u1347\0\u1376"+
-    "\0\u13a5\0\u13d4\0\u1403\0\u0178\0\57\0\u1432\0\u1461\0\u0178"+
-    "\0\57\0\u1490\0\u14bf\0\u14ee\0\u151d\0\u0178\0\57\0\u0178"+
-    "\0\u0178\0\u0178\0\57\0\57\0\u154c\0\u157b\0\u15aa\0\u0178"+
-    "\0\u0178\0\57\0\u0178\0\57\0\u15d9\0\u1608\0\57";
+    "\0\u13a5\0\u13d4\0\u1403\0\u1432\0\u0178\0\57\0\u1461\0\u1490"+
+    "\0\u0178\0\57\0\u14bf\0\u14ee\0\u151d\0\u154c\0\u157b\0\u15aa"+
+    "\0\u0178\0\57\0\u0178\0\u0178\0\u0178\0\57\0\57\0\u15d9"+
+    "\0\u1608\0\u1637\0\u0178\0\u1666\0\u1695\0\u0178\0\57\0\u0178"+
+    "\0\57\0\u16c4\0\u0178\0\57\0\u16f3\0\57";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[175];
+    int [] result = new int[182];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -277,29 +279,33 @@ public class Lexer implements java_cup.runtime.Scanner {
     "\16\0\1\46\6\0\12\46\1\211\14\46\2\0\1\46"+
     "\37\0\1\212\35\0\1\46\6\0\4\46\1\213\22\46"+
     "\2\0\1\46\44\0\1\214\30\0\1\46\6\0\1\46"+
-    "\1\215\14\46\1\216\10\46\2\0\1\46\16\0\1\46"+
-    "\6\0\14\46\1\217\12\46\2\0\1\46\41\0\1\220"+
-    "\33\0\1\46\6\0\1\221\26\46\2\0\1\46\16\0"+
-    "\1\46\6\0\15\46\1\222\11\46\2\0\1\46\42\0"+
-    "\1\223\32\0\1\46\6\0\20\46\1\224\6\46\2\0"+
-    "\1\46\1\0\1\225\14\0\1\46\6\0\14\46\1\226"+
-    "\12\46\2\0\1\46\41\0\1\227\33\0\1\46\6\0"+
-    "\4\46\1\230\22\46\2\0\1\46\31\0\1\231\67\0"+
-    "\1\232\32\0\1\46\6\0\1\233\26\46\2\0\1\46"+
-    "\16\0\1\46\6\0\10\46\1\234\16\46\2\0\1\46"+
-    "\1\235\15\0\1\46\6\0\1\236\26\46\2\0\1\46"+
-    "\25\0\1\237\47\0\1\46\6\0\13\46\1\240\13\46"+
-    "\2\0\1\46\16\0\1\46\6\0\24\46\1\241\1\242"+
-    "\1\46\2\0\1\46\51\0\1\243\1\244\22\0\1\46"+
-    "\6\0\26\46\1\245\2\0\1\46\53\0\1\246\36\0"+
-    "\1\247\41\0\1\46\6\0\17\46\1\250\7\46\2\0"+
-    "\1\46\16\0\1\46\6\0\4\46\1\251\22\46\2\0"+
-    "\1\46\31\0\1\252\43\0\1\46\6\0\1\253\26\46"+
-    "\2\0\1\46\25\0\1\254\75\0\1\255\37\0\1\256"+
-    "\71\0\1\257\20\0";
+    "\1\215\10\46\1\216\3\46\1\217\10\46\2\0\1\46"+
+    "\16\0\1\46\6\0\14\46\1\220\12\46\2\0\1\46"+
+    "\41\0\1\221\33\0\1\46\6\0\1\222\26\46\2\0"+
+    "\1\46\16\0\1\46\6\0\15\46\1\223\11\46\2\0"+
+    "\1\46\42\0\1\224\32\0\1\46\6\0\20\46\1\225"+
+    "\6\46\2\0\1\46\1\0\1\226\14\0\1\46\6\0"+
+    "\14\46\1\227\12\46\2\0\1\46\41\0\1\230\33\0"+
+    "\1\46\6\0\4\46\1\231\22\46\2\0\1\46\31\0"+
+    "\1\232\67\0\1\233\32\0\1\46\6\0\1\234\26\46"+
+    "\2\0\1\46\16\0\1\46\6\0\10\46\1\235\16\46"+
+    "\2\0\1\46\1\236\15\0\1\46\6\0\10\46\1\237"+
+    "\16\46\2\0\1\46\1\240\15\0\1\46\6\0\1\241"+
+    "\26\46\2\0\1\46\25\0\1\242\47\0\1\46\6\0"+
+    "\13\46\1\243\13\46\2\0\1\46\16\0\1\46\6\0"+
+    "\24\46\1\244\1\245\1\46\2\0\1\46\51\0\1\246"+
+    "\1\247\22\0\1\46\6\0\26\46\1\250\2\0\1\46"+
+    "\53\0\1\251\36\0\1\252\41\0\1\46\6\0\17\46"+
+    "\1\253\7\46\2\0\1\46\16\0\1\46\6\0\14\46"+
+    "\1\254\12\46\2\0\1\46\41\0\1\255\33\0\1\46"+
+    "\6\0\4\46\1\256\22\46\2\0\1\46\31\0\1\257"+
+    "\43\0\1\46\6\0\1\260\26\46\2\0\1\46\25\0"+
+    "\1\261\75\0\1\262\30\0\1\46\6\0\4\46\1\263"+
+    "\22\46\2\0\1\46\31\0\1\264\52\0\1\265\71\0"+
+    "\1\266\20\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[5687];
+    int [] result = new int[5922];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -349,13 +355,14 @@ public class Lexer implements java_cup.runtime.Scanner {
     "\2\1\1\0\2\1\2\11\3\1\1\0\3\1\1\0"+
     "\4\1\1\0\3\1\1\0\1\1\1\0\2\1\2\0"+
     "\2\1\1\0\1\1\1\0\6\1\1\11\1\1\1\0"+
-    "\2\1\1\0\1\11\2\1\1\0\1\1\1\0\3\1"+
+    "\2\1\1\0\1\11\2\1\1\0\1\1\1\0\4\1"+
     "\1\0\4\1\1\11\1\1\1\0\1\1\1\11\1\0"+
-    "\2\1\1\0\1\1\1\11\3\1\2\11\1\1\2\0"+
-    "\2\1\1\11\1\1\1\11\2\0\1\11";
+    "\2\1\1\0\1\1\1\0\1\1\1\11\3\1\2\11"+
+    "\1\1\2\0\2\1\1\0\1\1\1\11\1\1\1\11"+
+    "\1\0\1\1\1\11\1\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[175];
+    int [] result = new int[182];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -865,305 +872,311 @@ public class Lexer implements java_cup.runtime.Scanner {
     System.out.println("Error Lexico: " + yytext() + " | Fila:" + yyline + " | Columna: " + yycolumn);
             }
           // fall through
-          case 52: break;
+          case 53: break;
           case 2:
             { /* Espacios en blanco se ignoran */
             }
           // fall through
-          case 53: break;
+          case 54: break;
           case 3:
             { 
             }
           // fall through
-          case 54: break;
+          case 55: break;
           case 4:
             { reporte.TablaTokens.add(new Token("PARENTESIS_APERTURA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.PARENTESIS_APERTURA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 55: break;
+          case 56: break;
           case 5:
             { reporte.TablaTokens.add(new Token("PARENTESIS_CIERRE", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.PARENTESIS_CIERRE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 56: break;
+          case 57: break;
           case 6:
             { reporte.TablaTokens.add(new Token("COMA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.COMA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 57: break;
+          case 58: break;
           case 7:
             { reporte.TablaTokens.add(new Token("GUION", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.GUION, yycolumn, yyline, yytext());
             }
           // fall through
-          case 58: break;
+          case 59: break;
           case 8:
             { reporte.TablaTokens.add(new Token("ENTERO", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.ENTERO, yycolumn, yyline, yytext());
             }
           // fall through
-          case 59: break;
+          case 60: break;
           case 9:
             { reporte.TablaTokens.add(new Token("DOS_PUNTOS", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.DOS_PUNTOS, yycolumn, yyline, yytext());
             }
           // fall through
-          case 60: break;
+          case 61: break;
           case 10:
             { reporte.TablaTokens.add(new Token("PUNTO_COMA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.PUNTO_COMA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 61: break;
+          case 62: break;
           case 11:
             { reporte.TablaTokens.add(new Token("MENORQUE", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.MENORQUE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 62: break;
+          case 63: break;
           case 12:
             { reporte.TablaTokens.add(new Token("IGUAL", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.IGUAL, yycolumn, yyline, yytext());
             }
           // fall through
-          case 63: break;
+          case 64: break;
           case 13:
             { reporte.TablaTokens.add(new Token("MAYORQUE", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.MAYORQUE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 64: break;
+          case 65: break;
           case 14:
             { reporte.TablaTokens.add(new Token("LETRA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.LETRA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 65: break;
+          case 66: break;
           case 15:
             { reporte.TablaTokens.add(new Token("CORCHETE_APERTURA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.CORCHETE_APERTURA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 66: break;
+          case 67: break;
           case 16:
             { reporte.TablaTokens.add(new Token("CORCHETE_CIERRE", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.CORCHETE_CIERRE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 67: break;
+          case 68: break;
           case 17:
             { reporte.TablaTokens.add(new Token("CADENA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.CADENA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 68: break;
+          case 69: break;
           case 18:
             { reporte.TablaTokens.add(new Token("ID_ARRAY", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.ID_ARRAY, yycolumn, yyline, yytext());
             }
           // fall through
-          case 69: break;
+          case 70: break;
           case 19:
             { reporte.TablaTokens.add(new Token("ID_VAR", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.ID_VAR, yycolumn, yyline, yytext());
             }
           // fall through
-          case 70: break;
+          case 71: break;
           case 20:
             { reporte.TablaTokens.add(new Token("DECIMAL", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.DECIMAL, yycolumn, yyline, yytext());
             }
           // fall through
-          case 71: break;
+          case 72: break;
           case 21:
             { reporte.TablaTokens.add(new Token("ARRAY", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.ARRAY, yycolumn, yyline, yytext());
             }
           // fall through
-          case 72: break;
+          case 73: break;
           case 22:
             { reporte.TablaTokens.add(new Token("DIVISION", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.DIVISION, yycolumn, yyline, yytext());
             }
           // fall through
-          case 73: break;
+          case 74: break;
           case 23:
             { reporte.TablaTokens.add(new Token("FIN_DECLARACION", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.FIN_DECLARACION, yycolumn, yyline, yytext());
             }
           // fall through
-          case 74: break;
+          case 75: break;
           case 24:
             { reporte.TablaTokens.add(new Token("MAX", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.MAX, yycolumn, yyline, yytext());
             }
           // fall through
-          case 75: break;
+          case 76: break;
           case 25:
             { reporte.TablaTokens.add(new Token("MIN", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.MIN, yycolumn, yyline, yytext());
             }
           // fall through
-          case 76: break;
+          case 77: break;
           case 26:
             { reporte.TablaTokens.add(new Token("MODULO", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.MODULO, yycolumn, yyline, yytext());
             }
           // fall through
-          case 77: break;
+          case 78: break;
           case 27:
             { reporte.TablaTokens.add(new Token("MULTIPLICACION", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.MULTIPLICACION, yycolumn, yyline, yytext());
             }
           // fall through
-          case 78: break;
+          case 79: break;
           case 28:
             { reporte.TablaTokens.add(new Token("RESTA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.RESTA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 79: break;
+          case 80: break;
           case 29:
             { reporte.TablaTokens.add(new Token("SUMA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.SUMA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 80: break;
+          case 81: break;
           case 30:
             { reporte.TablaTokens.add(new Token("VAR", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.VAR, yycolumn, yyline, yytext());
             }
           // fall through
-          case 81: break;
+          case 82: break;
           case 31:
             { reporte.TablaTokens.add(new Token("ejeX", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.X, yycolumn, yyline, yytext());
             }
           // fall through
-          case 82: break;
+          case 83: break;
           case 32:
             { reporte.TablaTokens.add(new Token("ejeY", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.Y, yycolumn, yyline, yytext());
             }
           // fall through
-          case 83: break;
+          case 84: break;
           case 33:
             { reporte.TablaTokens.add(new Token("EJECUTAR", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.EJECUTAR, yycolumn, yyline, yytext());
             }
           // fall through
-          case 84: break;
+          case 85: break;
           case 34:
             { reporte.TablaTokens.add(new Token("MODA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.MODA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 85: break;
+          case 86: break;
           case 35:
             { reporte.TablaTokens.add(new Token("LABEL", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.LABEL, yycolumn, yyline, yytext());
             }
           // fall through
-          case 86: break;
+          case 87: break;
           case 36:
             { reporte.TablaTokens.add(new Token("MEDIA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.MEDIA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 87: break;
+          case 88: break;
           case 37:
             { reporte.TablaTokens.add(new Token("IMPRIMIR", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.IMPRIMIR, yycolumn, yyline, yytext());
             }
           // fall through
-          case 88: break;
+          case 89: break;
           case 38:
             { reporte.TablaTokens.add(new Token("CHAR", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.CHAR, yycolumn, yyline, yytext());
             }
           // fall through
-          case 89: break;
+          case 90: break;
           case 39:
             { reporte.TablaTokens.add(new Token("COLUMN", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.COLUMN, yycolumn, yyline, yytext());
             }
           // fall through
-          case 90: break;
+          case 91: break;
           case 40:
             { reporte.TablaTokens.add(new Token("DOUBLE", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.DOUBLE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 91: break;
+          case 92: break;
           case 41:
             { reporte.TablaTokens.add(new Token("GTITULO", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.GTITULO, yycolumn, yyline, yytext());
             }
           // fall through
-          case 92: break;
+          case 93: break;
           case 42:
             { reporte.TablaTokens.add(new Token("VALUES", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.VALUES, yycolumn, yyline, yytext());
             }
           // fall through
-          case 93: break;
+          case 94: break;
           case 43:
             { reporte.TablaTokens.add(new Token("CONSOLE", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.CONSOLE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 94: break;
+          case 95: break;
           case 44:
             { reporte.TablaTokens.add(new Token("MEDIANA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.MEDIANA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 95: break;
+          case 96: break;
           case 45:
             { reporte.TablaTokens.add(new Token("INICIO_CODIGO", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.INICIO_CODIGO, yycolumn, yyline, yytext());
             }
           // fall through
-          case 96: break;
+          case 97: break;
           case 46:
             { reporte.TablaTokens.add(new Token("tituloX", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.tX, yycolumn, yyline, yytext());
             }
           // fall through
-          case 97: break;
+          case 98: break;
           case 47:
             { reporte.TablaTokens.add(new Token("tituloY", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.tY, yycolumn, yyline, yytext());
             }
           // fall through
-          case 98: break;
+          case 99: break;
           case 48:
             { reporte.TablaTokens.add(new Token("GBARRAS", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.GBARRAS, yycolumn, yyline, yytext());
             }
           // fall through
-          case 99: break;
+          case 100: break;
           case 49:
             { reporte.TablaTokens.add(new Token("GPIE", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.GPIE, yycolumn, yyline, yytext());
             }
           // fall through
-          case 100: break;
+          case 101: break;
           case 50:
             { reporte.TablaTokens.add(new Token("VARIANZA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.VARIANZA, yycolumn, yyline, yytext());
             }
           // fall through
-          case 101: break;
+          case 102: break;
           case 51:
+            { reporte.TablaTokens.add(new Token("GLINEAS", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.GLINEAS, yycolumn, yyline, yytext());
+            }
+          // fall through
+          case 103: break;
+          case 52:
             { reporte.TablaTokens.add(new Token("FIN_CODIGO", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.FIN_CODIGO, yycolumn, yyline, yytext());
             }
           // fall through
-          case 102: break;
+          case 104: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

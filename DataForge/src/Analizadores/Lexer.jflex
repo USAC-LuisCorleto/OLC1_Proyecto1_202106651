@@ -50,6 +50,7 @@ COLUMN = "column"
 EJECUTAR = "EXEC"
 GBARRAS = "graphBar"
 GPIE = "graphPie"
+GLINEAS = "graphLine"
 GTITULO = "titulo"
 X = "ejeX"
 Y = "ejeY"
@@ -185,6 +186,10 @@ COMLINEAS = \<\!([^"!>"]|[\r|\f|\s|\t|\n])*\!\>
 {GPIE}  { 
     reporte.TablaTokens.add(new Token("GPIE", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.GPIE, yycolumn, yyline, yytext()); 
+}
+{GLINEAS}  { 
+    reporte.TablaTokens.add(new Token("GLINEAS", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.GLINEAS, yycolumn, yyline, yytext()); 
 }
 {GTITULO}  { 
     reporte.TablaTokens.add(new Token("GTITULO", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 

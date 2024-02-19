@@ -21,6 +21,10 @@ parser code
     private String tityGlobal;
     private ArrayList<String> labGlobal;
     private ArrayList<String> valsGlobal;
+    private ArrayList<String> ejexGlobalL;
+    private ArrayList<String> ejeyGlobalL;
+    private String titxGlobalL;
+    private String tityGlobalL;
     public static String resultado = ""; 
 
     public void syntax_error(Symbol s)
@@ -68,6 +72,7 @@ terminal String COLUMN;
 terminal String EJECUTAR;
 terminal String GBARRAS;
 terminal String GPIE;
+terminal String GLINEAS;
 terminal String GTITULO;
 terminal String X;
 terminal String Y;
@@ -110,7 +115,6 @@ non terminal expresion;
 non terminal lista_expresiones;
 non terminal operacion_aritmetica;
 non terminal operacion;
-non terminal double_aritmetica;
 non terminal print;
 non terminal print_array;
 non terminal operacion_estadistica;
@@ -118,6 +122,7 @@ non terminal estadística;
 non terminal graficar;
 non terminal graficaB;
 non terminal graficaP;
+non terminal graficaL;
 non terminal titulo;
 non terminal ejex;
 non terminal ejey;
@@ -127,8 +132,10 @@ non terminal lab;
 non terminal vals;
 non terminal lista_sentenciasB;
 non terminal lista_sentenciasP;
+non terminal lista_sentenciasL;
 non terminal sentenciaB;
 non terminal sentenciaP;
+non terminal sentenciaL;
 
 //------> Definir Simbolo Inicial
 start with inicio; 
@@ -152,14 +159,19 @@ instruccion ::= variable
 
 graficar ::= graficaB
         | graficaP
+        | graficaL
 ;
 
-graficaB ::= GBARRAS:grafica PARENTESIS_APERTURA lista_sentenciasB EJECUTAR GBARRAS FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
+graficaB ::= GBARRAS PARENTESIS_APERTURA lista_sentenciasB EJECUTAR GBARRAS:grafica FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
                         Instrucciones.GráficaBarras.generarGráfica(grafica.toString(), tituloGlobal, ejexGlobal, ejeyGlobal, titxGlobal, tityGlobal); :}
 ;
 
-graficaP ::= GPIE:grafica PARENTESIS_APERTURA lista_sentenciasP EJECUTAR GPIE FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
+graficaP ::= GPIE PARENTESIS_APERTURA lista_sentenciasP EJECUTAR GPIE:grafica FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
                         Instrucciones.GráficaPie.generarGráfica(grafica.toString(), labGlobal, valsGlobal, tituloGlobal); :}
+;
+
+graficaL ::= GLINEAS PARENTESIS_APERTURA lista_sentenciasL EJECUTAR GLINEAS:grafica FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
+                        Instrucciones.GráficaLíneas.generarGráfica(grafica.toString(), tituloGlobal, ejexGlobalL, ejeyGlobalL, titxGlobalL, tityGlobalL); :}
 ;
 
 lista_sentenciasB ::= sentenciaB:val {: 
@@ -180,16 +192,32 @@ lista_sentenciasP ::= sentenciaP:val {:
                         RESULT = listaSenP;  :}
 ;
 
+lista_sentenciasL ::= sentenciaL:val {: 
+                        ArrayList<String> listaSenL = new ArrayList<>();
+                        listaSenL.add(val.toString());
+                        RESULT = listaSenL;  :}
+        | lista_sentenciasL:listaSenL sentenciaL:val {: 
+                        ((ArrayList<String>) listaSenL).add(val.toString());
+                        RESULT = listaSenL;  :}
+;
+
 sentenciaP ::= titulo:tit {: tituloGlobal = tit.toString(); RESULT = tituloGlobal; :}
         | lab:lab         {: labGlobal = (ArrayList<String>) lab; RESULT = labGlobal; :}
         | vals:vals       {: valsGlobal = (ArrayList<String>) vals; RESULT = valsGlobal; :}
 ;
 
 sentenciaB ::= titulo:tit   {: tituloGlobal = tit.toString(); RESULT = tituloGlobal; :}
-        | ejex:ejex   {: ejexGlobal = (ArrayList<String>) ejex; RESULT = ejexGlobal; :}
-        | ejey:ejey   {: ejeyGlobal = (ArrayList<String>) ejey; RESULT = ejeyGlobal; :}
-        | titx:titx   {: titxGlobal = titx.toString(); RESULT = titxGlobal; :}
-        | tity:tity   {: tityGlobal = tity.toString(); RESULT = tityGlobal; :}
+        | ejex:ejex         {: ejexGlobal = (ArrayList<String>) ejex; RESULT = ejexGlobal; :}
+        | ejey:ejey         {: ejeyGlobal = (ArrayList<String>) ejey; RESULT = ejeyGlobal; :}
+        | titx:titx         {: titxGlobal = titx.toString(); RESULT = titxGlobal; :}
+        | tity:tity         {: tityGlobal = tity.toString(); RESULT = tityGlobal; :}
+;
+
+sentenciaL ::= titulo:tit  {: tituloGlobal = tit.toString(); RESULT = tituloGlobal; :}
+        | ejex:ejex        {: ejexGlobalL = (ArrayList<String>) ejex; RESULT = ejexGlobalL; :}
+        | ejey:ejey        {: ejeyGlobalL = (ArrayList<String>) ejey; RESULT = ejeyGlobalL; :}
+        | titx:titx        {: titxGlobalL = titx.toString(); RESULT = titxGlobalL; :}
+        | tity:tity        {: tityGlobalL = tity.toString(); RESULT = tityGlobalL; :}
 ;
 
 titulo ::= GTITULO DOS_PUNTOS DOS_PUNTOS CHAR IGUAL expresion:val FIN_DECLARACION PUNTO_COMA {: 

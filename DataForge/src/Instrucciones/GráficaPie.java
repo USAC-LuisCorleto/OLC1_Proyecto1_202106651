@@ -32,14 +32,12 @@ public class GráficaPie {
             }
         }
 
-        JFreeChart chart = ChartFactory.createPieChart(
+        return ChartFactory.createPieChart(
                 title.replaceAll("\"", ""),
                 dataset,
                 true,
                 true,
                 false
         );
-
-        return chart;
     }
 }
