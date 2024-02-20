@@ -3,6 +3,7 @@ package Interfaz;
 import Analizadores.Parser;
 import Instrucciones.GráficaBarras;
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -375,23 +376,22 @@ public class Interfaz extends javax.swing.JFrame {
             String textoSalida = Analizadores.Parser.resultado;
             consolaArchivo.setText(textoSalida);
             mostrarGráficaActual();
+            try {
+                Reportes.ReporteTokens.generarReporteTokens();
+                Reportes.ReporteErrores.generarReporteErrores();
+                Reportes.ReporteSímbolos.generarReporteErrores();
+            } catch (IOException ex) {
+                Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_itemBarEjecutarMouseClicked
 
     private void reporteTokensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteTokensActionPerformed
-        try {
-            Reportes.ReporteTokens.generarReporteTokens();
-        } catch (IOException ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        abrirArchivoHTML("Reporte de Tokens.html");
     }//GEN-LAST:event_reporteTokensActionPerformed
 
     private void reporteErroresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteErroresActionPerformed
-        try {
-            Reportes.ReporteErrores.generarReporteErrores();
-        } catch (IOException ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        abrirArchivoHTML("Reporte de Errores.html");
     }//GEN-LAST:event_reporteErroresActionPerformed
 
     private void itemBarLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemBarLimpiarMouseClicked
@@ -400,12 +400,21 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_itemBarLimpiarMouseClicked
 
     private void reporteSímbolosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteSímbolosActionPerformed
-        try {
-            Reportes.ReporteSímbolos.generarReporteErrores();
-        } catch (IOException ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        abrirArchivoHTML("Reporte de Símbolos.html");
     }//GEN-LAST:event_reporteSímbolosActionPerformed
+
+    private void abrirArchivoHTML(String nombreArchivo) {
+        try {
+            File archivoHTML = new File(nombreArchivo);
+            if (archivoHTML.exists()) {
+                Desktop.getDesktop().browse(archivoHTML.toURI());
+            } else {
+                System.err.println("El archivo no existe: " + nombreArchivo);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     private void mostrarGráficaActual() {
         listaGráficas = GráficaBarras.getListaGráficas();
