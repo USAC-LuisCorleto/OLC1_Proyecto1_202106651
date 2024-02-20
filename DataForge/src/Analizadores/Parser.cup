@@ -160,6 +160,7 @@ instruccion ::= variable
         | print
         | print_array
         | graficar
+        | error FIN_DECLARACION PUNTO_COMA
 ;
 
 graficar ::= graficaB
