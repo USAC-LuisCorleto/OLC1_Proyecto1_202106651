@@ -45,7 +45,7 @@ public class Estadísticas {
     private static String calcularMediana(ArrayList<String> valores) {
         ArrayList<Double> numeros = new ArrayList<>();
         for (String valor : valores) {
-            numeros.add(Double.parseDouble(valor));
+            numeros.add(Double.valueOf(valor));
         }
         Collections.sort(numeros);
         int n = numeros.size();

@@ -51,6 +51,7 @@ EJECUTAR = "EXEC"
 GBARRAS = "graphBar"
 GPIE = "graphPie"
 GLINEAS = "graphLine"
+HISTOGRAMA = "Histogram"
 GTITULO = "titulo"
 X = "ejeX"
 Y = "ejeY"
@@ -190,6 +191,10 @@ COMLINEAS = \<\!([^"!>"]|[\r|\f|\s|\t|\n])*\!\>
 {GLINEAS}  { 
     reporte.TablaTokens.add(new Token("GLINEAS", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
     return new Symbol(sym.GLINEAS, yycolumn, yyline, yytext()); 
+}
+{HISTOGRAMA}  { 
+    reporte.TablaTokens.add(new Token("HISTOGRAMA", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 
+    return new Symbol(sym.HISTOGRAMA, yycolumn, yyline, yytext()); 
 }
 {GTITULO}  { 
     reporte.TablaTokens.add(new Token("GTITULO", yytext(), Integer.toString(yyline), Integer.toString(yycolumn))); 

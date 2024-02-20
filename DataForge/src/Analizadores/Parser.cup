@@ -25,6 +25,7 @@ parser code
     private ArrayList<String> ejeyGlobalL;
     private String titxGlobalL;
     private String tityGlobalL;
+    private ArrayList<String> valsGlobalH;
     public static String resultado = ""; 
 
     public void syntax_error(Symbol s)
@@ -73,6 +74,7 @@ terminal String EJECUTAR;
 terminal String GBARRAS;
 terminal String GPIE;
 terminal String GLINEAS;
+terminal String HISTOGRAMA;
 terminal String GTITULO;
 terminal String X;
 terminal String Y;
@@ -123,6 +125,7 @@ non terminal graficar;
 non terminal graficaB;
 non terminal graficaP;
 non terminal graficaL;
+non terminal graficaH;
 non terminal titulo;
 non terminal ejex;
 non terminal ejey;
@@ -133,9 +136,11 @@ non terminal vals;
 non terminal lista_sentenciasB;
 non terminal lista_sentenciasP;
 non terminal lista_sentenciasL;
+non terminal lista_sentenciasH;
 non terminal sentenciaB;
 non terminal sentenciaP;
 non terminal sentenciaL;
+non terminal sentenciaH;
 
 //------> Definir Simbolo Inicial
 start with inicio; 
@@ -147,7 +152,7 @@ inicio ::= INICIO_CODIGO lista_instrucciones FIN_CODIGO
 ;
 
 lista_instrucciones ::= instruccion
-        | lista_instrucciones instruccion
+        | lista_instrucciones instruccion   
 ;
 
 instruccion ::= variable 
@@ -160,6 +165,7 @@ instruccion ::= variable
 graficar ::= graficaB
         | graficaP
         | graficaL
+        | graficaH
 ;
 
 graficaB ::= GBARRAS PARENTESIS_APERTURA lista_sentenciasB EJECUTAR GBARRAS:grafica FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
@@ -172,6 +178,10 @@ graficaP ::= GPIE PARENTESIS_APERTURA lista_sentenciasP EJECUTAR GPIE:grafica FI
 
 graficaL ::= GLINEAS PARENTESIS_APERTURA lista_sentenciasL EJECUTAR GLINEAS:grafica FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
                         Instrucciones.GráficaLíneas.generarGráfica(grafica.toString(), tituloGlobal, ejexGlobalL, ejeyGlobalL, titxGlobalL, tityGlobalL); :}
+;
+
+graficaH ::= HISTOGRAMA PARENTESIS_APERTURA lista_sentenciasH EJECUTAR HISTOGRAMA:grafica FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA {:
+                        Instrucciones.Histograma.generarGráfica(grafica.toString(), tituloGlobal, valsGlobalH); :}
 ;
 
 lista_sentenciasB ::= sentenciaB:val {: 
@@ -201,6 +211,15 @@ lista_sentenciasL ::= sentenciaL:val {:
                         RESULT = listaSenL;  :}
 ;
 
+lista_sentenciasH ::= sentenciaH:val {: 
+                        ArrayList<String> listaSenH = new ArrayList<>();
+                        listaSenH.add(val.toString());
+                        RESULT = listaSenH;  :}
+        | lista_sentenciasH:listaSenH sentenciaH:val {: 
+                        ((ArrayList<String>) listaSenH).add(val.toString());
+                        RESULT = listaSenH;  :}
+;
+
 sentenciaP ::= titulo:tit {: tituloGlobal = tit.toString(); RESULT = tituloGlobal; :}
         | lab:lab         {: labGlobal = (ArrayList<String>) lab; RESULT = labGlobal; :}
         | vals:vals       {: valsGlobal = (ArrayList<String>) vals; RESULT = valsGlobal; :}
@@ -218,6 +237,10 @@ sentenciaL ::= titulo:tit  {: tituloGlobal = tit.toString(); RESULT = tituloGlob
         | ejey:ejey        {: ejeyGlobalL = (ArrayList<String>) ejey; RESULT = ejeyGlobalL; :}
         | titx:titx        {: titxGlobalL = titx.toString(); RESULT = titxGlobalL; :}
         | tity:tity        {: tityGlobalL = tity.toString(); RESULT = tityGlobalL; :}
+;
+
+sentenciaH ::= titulo:tit  {: tituloGlobal = tit.toString(); RESULT = tituloGlobal; :}
+        | vals:vals        {: valsGlobalH = (ArrayList<String>) vals; RESULT = valsGlobalH; :}
 ;
 
 titulo ::= GTITULO DOS_PUNTOS DOS_PUNTOS CHAR IGUAL expresion:val FIN_DECLARACION PUNTO_COMA {: 
