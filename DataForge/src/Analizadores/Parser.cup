@@ -334,6 +334,10 @@ array ::= ARRAY DOS_PUNTOS tipo:tipoArr DOS_PUNTOS DOS_PUNTOS ID_ARRAY:id MENORQ
                         Instrucciones.Arreglos.datosReporteArreglo(id.toString(), (String) tipoArr, (ArrayList<String>) listaexp);
                         System.out.println("Asignando valores a la variable " + id.toString() + ": [" + expresiones + "]");
                         Instrucciones.Arreglos.asignarArray(id.toString(),(ArrayList<String>) listaexp); :}
+        | ARRAY DOS_PUNTOS tipo:tipoArr DOS_PUNTOS DOS_PUNTOS ID_ARRAY:id MENORQUE GUION expresion:exp FIN_DECLARACION PUNTO_COMA {:
+                        ArrayList<String> valores = Instrucciones.Arreglos.obtenerArray(exp.toString());
+                        Instrucciones.Arreglos.asignarArray(id.toString(), (ArrayList<String>) valores); 
+                        Instrucciones.Arreglos.datosReporteArreglo(id.toString(), (String) tipoArr, (ArrayList<String>) valores); :}
 ;
 
 tipo ::= DOUBLE:tip    {: RESULT = tip.toString(); :}
