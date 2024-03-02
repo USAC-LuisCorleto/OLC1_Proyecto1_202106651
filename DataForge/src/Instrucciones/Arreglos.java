@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Arreglos {
 
-    private static final HashMap<String, ArrayList<String>> arreglos = new HashMap<>();
+    public static final HashMap<String, ArrayList<String>> arreglos = new HashMap<>();
     private static final HashMap<String, String> variables = Variables.obtenerVariables();
 
     public static void asignarArray(String nombre, ArrayList<String> valores) {

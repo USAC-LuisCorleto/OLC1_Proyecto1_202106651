@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Variables {
 
-    private static final HashMap<String, String> variables = new HashMap<>();
+    public static final HashMap<String, String> variables = new HashMap<>();
 
     public static void asignarVariable(String nombre, String valor) {
         variables.put(nombre, valor);

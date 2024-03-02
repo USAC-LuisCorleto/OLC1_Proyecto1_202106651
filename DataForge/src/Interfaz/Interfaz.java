@@ -4,6 +4,7 @@ import Analizadores.Parser;
 import Instrucciones.GráficaBarras;
 import java.awt.BorderLayout;
 import java.awt.Desktop;
+import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -94,7 +96,9 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         consolaArchivo.setEditable(false);
+        consolaArchivo.setBackground(new java.awt.Color(0, 0, 0));
         consolaArchivo.setColumns(20);
+        consolaArchivo.setForeground(new java.awt.Color(255, 255, 255));
         consolaArchivo.setRows(5);
         jScrollPane2.setViewportView(consolaArchivo);
 
@@ -395,8 +399,22 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_reporteErroresActionPerformed
 
     private void itemBarLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemBarLimpiarMouseClicked
-        consolaArchivo.setText("");
-        Analizadores.Parser.resultado = "";
+        try {
+            consolaArchivo.setText("");
+            Analizadores.Parser.resultado = "";
+            Reportes.ReporteErrores.TablaErroresLéxicos.clear();
+            Reportes.ReporteErrores.TablaErroresSintácticos.clear();
+            Reportes.ReporteTokens.TablaTokens.clear();
+            Reportes.ReporteSímbolos.TablaSímbolosArreglos.clear();
+            Reportes.ReporteSímbolos.TablaSímbolosVariables.clear();
+            Instrucciones.GráficaBarras.listaGráficas.clear();
+            Instrucciones.Variables.variables.clear();
+            Instrucciones.Arreglos.arreglos.clear();
+
+            JOptionPane.showMessageDialog(null, "Consola limpiada con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Se produjo un error al limpiar la consola.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_itemBarLimpiarMouseClicked
 
     private void reporteSímbolosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteSímbolosActionPerformed

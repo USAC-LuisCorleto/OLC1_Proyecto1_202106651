@@ -1,15 +1,21 @@
 
 import Interfaz.Interfaz;
+import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class DataForge {
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new HiFiLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+        }
         
         Interfaz menPrincipal = new Interfaz();
         menPrincipal.setVisible(true);
         menPrincipal.setLocationRelativeTo(null);
-        
-        //Generar Analizadores
+
         analizadores("src/Analizadores/", "Lexer.jflex", "Parser.cup");
     }
 
