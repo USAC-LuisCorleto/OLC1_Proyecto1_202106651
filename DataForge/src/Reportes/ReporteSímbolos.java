@@ -71,7 +71,7 @@ public class ReporteSímbolos {
             archivo.write("<body>\n");
 
             archivo.write("<table border=\"1\">\n");
-            archivo.write("<tr><th>#</th><th>Nombre</th><th>Tipo</th><th>Valor</th></tr>\n");
+            archivo.write("<tr><th>#</th><th>Nombre</th><th>Tipo</th><th>Valor</th><th>Columna</th><th>Fila</th></tr>\n");
 
             for (SímbolosV variables : TablaSímbolosVariables) {
                 archivo.write("<tr>");
@@ -79,6 +79,8 @@ public class ReporteSímbolos {
                 archivo.write("<td>" + variables.getNombre() + "</td>");
                 archivo.write("<td>" + variables.getTipo() + "</td>");
                 archivo.write("<td>" + variables.getValor() + "</td>");
+                archivo.write("<td>" + variables.getColumna() + "</td>");
+                archivo.write("<td>" + variables.getLinea() + "</td>");
                 archivo.write("</tr>\n");
                 contador++;
             }
@@ -89,6 +91,8 @@ public class ReporteSímbolos {
                 archivo.write("<td>" + arreglos.getNombre() + "</td>");
                 archivo.write("<td>" + arreglos.getTipo() + "</td>");
                 archivo.write("<td>" + arreglos.getValores() + "</td>");
+                archivo.write("<td>" + arreglos.getColumna() + "</td>");
+                archivo.write("<td>" + arreglos.getFila() + "</td>");
                 archivo.write("</tr>\n");
                 contador++;
             }

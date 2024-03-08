@@ -310,7 +310,7 @@ estadística ::= MEDIA:val   {: RESULT = val.toString(); :}
 ;
 
 variable ::= VAR DOS_PUNTOS tipo:tipoVar DOS_PUNTOS DOS_PUNTOS ID_VAR:id MENORQUE GUION expresion:valor FIN_DECLARACION PUNTO_COMA {: 
-                        Instrucciones.Variables.datosReporteVariables(id.toString(), (String) tipoVar, valor.toString());
+                        Instrucciones.Variables.datosReporteVariables(id.toString(), (String) tipoVar, valor.toString(), Integer.toString(idleft), Integer.toString(idright));
                         System.out.println("Asignando valor a la variable " + id.toString() + ": " + valor.toString());
                         Instrucciones.Variables.asignarVariable(id.toString(), valor.toString()); :}
 ;
@@ -331,13 +331,13 @@ array ::= ARRAY DOS_PUNTOS tipo:tipoArr DOS_PUNTOS DOS_PUNTOS ID_ARRAY:id MENORQ
                         if (expresiones.length() > 2) { 
                             expresiones = expresiones.substring(0, expresiones.length() - 2);
                         }
-                        Instrucciones.Arreglos.datosReporteArreglo(id.toString(), (String) tipoArr, (ArrayList<String>) listaexp);
+                        Instrucciones.Arreglos.datosReporteArreglo(id.toString(), (String) tipoArr, (ArrayList<String>) listaexp, Integer.toString(idleft), Integer.toString(idright));
                         System.out.println("Asignando valores a la variable " + id.toString() + ": [" + expresiones + "]");
-                        Instrucciones.Arreglos.asignarArray(id.toString(),(ArrayList<String>) listaexp); :}
+                        Instrucciones.Arreglos.asignarArray(id.toString(),(ArrayList<String>) listaexp ); :}
         | ARRAY DOS_PUNTOS tipo:tipoArr DOS_PUNTOS DOS_PUNTOS ID_ARRAY:id MENORQUE GUION expresion:exp FIN_DECLARACION PUNTO_COMA {:
                         ArrayList<String> valores = Instrucciones.Arreglos.obtenerArray(exp.toString());
                         Instrucciones.Arreglos.asignarArray(id.toString(), (ArrayList<String>) valores); 
-                        Instrucciones.Arreglos.datosReporteArreglo(id.toString(), (String) tipoArr, (ArrayList<String>) valores); :}
+                        Instrucciones.Arreglos.datosReporteArreglo(id.toString(), (String) tipoArr, (ArrayList<String>) valores, Integer.toString(idleft), Integer.toString(idright)); :}
 ;
 
 tipo ::= DOUBLE:tip    {: RESULT = tip.toString(); :}

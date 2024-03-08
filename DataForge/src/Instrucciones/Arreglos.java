@@ -31,7 +31,7 @@ public class Arreglos {
         return arreglos.containsKey(nombre);
     }
     
-    public static void datosReporteArreglo(String nombre, String tipo, ArrayList<String> valores){
-        ReporteSímbolos.TablaSímbolosArreglos.add(new SímbolosA(nombre, tipo, valores));
+    public static void datosReporteArreglo(String nombre, String tipo, ArrayList<String> valores, String columna, String fila){
+        ReporteSímbolos.TablaSímbolosArreglos.add(new SímbolosA(nombre, tipo, valores, columna, fila));
     }
 }

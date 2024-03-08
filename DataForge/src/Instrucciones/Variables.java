@@ -24,7 +24,7 @@ public class Variables {
         return variables;
     }
     
-    public static void datosReporteVariables(String nombre, String tipo, String valor){
-        ReporteSímbolos.TablaSímbolosVariables.add(new SímbolosV(nombre, tipo, valor));
+    public static void datosReporteVariables(String nombre, String tipo, String valor, String columna, String linea){
+        ReporteSímbolos.TablaSímbolosVariables.add(new SímbolosV(nombre, tipo, valor, columna, linea));
     }
 }
