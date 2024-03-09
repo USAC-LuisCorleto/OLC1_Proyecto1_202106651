@@ -8,19 +8,14 @@ import java.util.HashMap;
 public class Arreglos {
 
     public static final HashMap<String, ArrayList<String>> arreglos = new HashMap<>();
-    private static final HashMap<String, String> variables = Variables.obtenerVariables();
 
     public static void asignarArray(String nombre, ArrayList<String> valores) {
         ArrayList<String> valoresAsignados = new ArrayList<>();
         for (String valor : valores) {
-            if (variables.containsKey(valor)) {
-                valoresAsignados.add(variables.get(valor));
-            } else {
-                valoresAsignados.add(valor); 
-            }
+            valoresAsignados.add(valor);
         }
         arreglos.put(nombre, valoresAsignados);
-        
+
     }
 
     public static ArrayList<String> obtenerArray(String nombre) {
@@ -30,8 +25,8 @@ public class Arreglos {
     public static boolean existeArray(String nombre) {
         return arreglos.containsKey(nombre);
     }
-    
-    public static void datosReporteArreglo(String nombre, String tipo, ArrayList<String> valores, String columna, String fila){
+
+    public static void datosReporteArreglo(String nombre, String tipo, ArrayList<String> valores, String columna, String fila) {
         ReporteSímbolos.TablaSímbolosArreglos.add(new SímbolosA(nombre, tipo, valores, columna, fila));
     }
 }

@@ -1028,7 +1028,7 @@ class CUP$Parser$actions {
 		int expright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		Object exp = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
-                        RESULT = Instrucciones.Arreglos.obtenerArray(exp.toString()); 
+                        RESULT = ((ArrayList<String>) exp); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ejex",20, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1054,7 +1054,7 @@ class CUP$Parser$actions {
 		int expright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		Object exp = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
-                        RESULT = Instrucciones.Arreglos.obtenerArray(exp.toString()); 
+                        RESULT = ((ArrayList<String>) exp); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ejey",21, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1161,7 +1161,7 @@ class CUP$Parser$actions {
 		int nombreArrayright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		Object nombreArray = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		 
-                        resultado = Instrucciones.ImpresiónArreglos.imprimirArregloPorNombre(titulo.toString(), nombreArray.toString()); 
+                        resultado = Instrucciones.ImpresiónArreglos.imprimirArreglo(titulo.toString(), (ArrayList<String>) nombreArray); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("print_array",11, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1212,8 +1212,7 @@ class CUP$Parser$actions {
 		int expright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		Object exp = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		 
-                        ArrayList<String> valores = Instrucciones.Arreglos.obtenerArray(exp.toString());
-                        RESULT = Instrucciones.Estadísticas.realizarOperaciónEstadística(op.toString(), valores);
+                        RESULT = Instrucciones.Estadísticas.realizarOperaciónEstadística(op.toString(), (ArrayList<String>) exp);
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("operacion_estadistica",12, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1322,7 +1321,7 @@ class CUP$Parser$actions {
 		 
                         Instrucciones.Variables.datosReporteVariables(id.toString(), (String) tipoVar, valor.toString(), Integer.toString(idleft), Integer.toString(idright));
                         System.out.println("Asignando valor a la variable " + id.toString() + ": " + valor.toString());
-                        Instrucciones.Variables.asignarVariable(id.toString(), valor.toString()); 
+                        Instrucciones.Variables.asignarVariable(id.toString().toLowerCase(), valor.toString()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("variable",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1410,8 +1409,8 @@ class CUP$Parser$actions {
                             expresiones = expresiones.substring(0, expresiones.length() - 2);
                         }
                         Instrucciones.Arreglos.datosReporteArreglo(id.toString(), (String) tipoArr, (ArrayList<String>) listaexp, Integer.toString(idleft), Integer.toString(idright));
-                        System.out.println("Asignando valores a la variable " + id.toString() + ": [" + expresiones + "]");
-                        Instrucciones.Arreglos.asignarArray(id.toString(),(ArrayList<String>) listaexp ); 
+                        System.out.println("Asignando valores a la variable " + id.toString().toLowerCase() + ": [" + expresiones + "]");
+                        Instrucciones.Arreglos.asignarArray(id.toString().toLowerCase(),(ArrayList<String>) listaexp ); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("array",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-12)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1430,9 +1429,8 @@ class CUP$Parser$actions {
 		int expright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		Object exp = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
-                        ArrayList<String> valores = Instrucciones.Arreglos.obtenerArray(exp.toString());
-                        Instrucciones.Arreglos.asignarArray(id.toString(), (ArrayList<String>) valores); 
-                        Instrucciones.Arreglos.datosReporteArreglo(id.toString(), (String) tipoArr, (ArrayList<String>) valores, Integer.toString(idleft), Integer.toString(idright)); 
+                        Instrucciones.Arreglos.asignarArray(id.toString().toLowerCase(), (ArrayList<String>) exp); 
+                        Instrucciones.Arreglos.datosReporteArreglo(id.toString(), (String) tipoArr, (ArrayList<String>) exp, Integer.toString(idleft), Integer.toString(idright)); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("array",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1536,7 +1534,7 @@ class CUP$Parser$actions {
 		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		String val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		 RESULT = Instrucciones.Variables.obtenerVariable(val.toString()); 
+		 RESULT = Instrucciones.Variables.obtenerVariable(val.toString().toLowerCase()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expresion",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1572,7 +1570,7 @@ class CUP$Parser$actions {
 		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		String val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		 RESULT = val.toString(); 
+		 RESULT = Instrucciones.Arreglos.obtenerArray(val.toString().toLowerCase()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expresion",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
