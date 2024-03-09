@@ -53,7 +53,6 @@ public class Interfaz extends javax.swing.JFrame {
         menúNuevo = new javax.swing.JMenuItem();
         menúGuardar = new javax.swing.JMenuItem();
         menúEliminar = new javax.swing.JMenuItem();
-        itemBarPestañas = new javax.swing.JMenu();
         itemBarEjecutar = new javax.swing.JMenu();
         itemBarReportes = new javax.swing.JMenu();
         reporteTokens = new javax.swing.JMenuItem();
@@ -195,9 +194,6 @@ public class Interfaz extends javax.swing.JFrame {
         itemBarArchivo.add(menúEliminar);
 
         jMenuBar1.add(itemBarArchivo);
-
-        itemBarPestañas.setText("Pestañas");
-        jMenuBar1.add(itemBarPestañas);
 
         itemBarEjecutar.setText("Ejecutar");
         itemBarEjecutar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -510,7 +506,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JMenu itemBarArchivo;
     private javax.swing.JMenu itemBarEjecutar;
     private javax.swing.JMenu itemBarLimpiar;
-    private javax.swing.JMenu itemBarPestañas;
     private javax.swing.JMenu itemBarReportes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

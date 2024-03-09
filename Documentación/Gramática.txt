@@ -1,0 +1,135 @@
+<----------------------TERMINALES---------------------->
+/*-----PALABRAS RESERvADAS-----*/
+INICIO_CODIGO, VALUES, LABEL, tY, tx, Y, X, GTITULO, HISTOGRAMA, GLINEAS, GPIE, GBARRAS, EJECUTAR, COLUMN, MIN, MAX, VARIANZA, MODA
+MEDIANA, MEDIA, IMPRIMIR; CONSOLE, MODULO, DIVISION, MULTIPLICACION, RESTA, SUMA, ARRAY, DOUBLE, CHAR, VAR, INICIO_CODIGO, FIN_DECLARACION
+
+/*-----PRÍNCIPAL-----*/
+ENTERO, DECIMAL, LETRA; ID_VAR, ID_ARRAY, CADENA    
+
+/*-----CONCATENADORES-----*/
+CORCHETE_APERTURA, CORCHETE_CIERRE, PARENTESIS_APERTURA, PARENTESIS_CIERRE;
+
+/*-----SÍMBOLOS-----*/
+DOS_PUNTOS, PUNTO_COMA, MENORQUE, MAYORQUE, GUION, COMA, IGUAL
+
+<--------------------NO TERMINALES-------------------->
+inicio, lista_instrucciones, instruccion, variable, array, tipo, expresion, lista_expresiones, operacion_aritmetica, operacion
+print, print_array, operacion_estadistica, estadística, graficar, graficaB, graficaH, graficaP, graficaL, titulo, ejex, ejey
+titx, tity, lab, vals, lista_sentenciasB, lista_sentenciasP, lista_sentenciasL, lista_sentenciasH, sentenciaB, sentenciaP
+sentenciaL, sentenciaH
+
+<inicio> ::= INICIO_CODIGO <lista_instrucciones> FIN_CODIGO
+
+<lista_instrucciones> ::= <instruccion>
+                         | <lista_instrucciones> <instruccion>
+
+<instruccion> ::= <variable>
+                 | <array>
+                 | <print>
+                 | <print_array>
+                 | <graficar>
+                 | error FIN_DECLARACION PUNTO_COMA
+
+<graficar> ::= <graficaB>
+               | <graficaP>
+               | <graficaL>
+               | <graficaH>
+
+<graficaB> ::= GBARRAS PARENTESIS_APERTURA <lista_sentenciasB> EJECUTAR GBARRAS FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA
+
+<graficaP> ::= GPIE PARENTESIS_APERTURA <lista_sentenciasP> EJECUTAR GPIE FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA
+
+<graficaL> ::= GLINEAS PARENTESIS_APERTURA <lista_sentenciasL> EJECUTAR GLINEAS FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA
+
+<graficaH> ::= HISTOGRAMA PARENTESIS_APERTURA <lista_sentenciasH> EJECUTAR HISTOGRAMA FIN_DECLARACION PUNTO_COMA PARENTESIS_CIERRE FIN_DECLARACION PUNTO_COMA
+
+<lista_sentenciasB> ::= <sentenciaB>
+                        | <lista_sentenciasB> <sentenciaB>
+
+<lista_sentenciasP> ::= <sentenciaP>
+                        | <lista_sentenciasP> <sentenciaP>
+
+<lista_sentenciasL> ::= <sentenciaL>
+                        | <lista_sentenciasL> <sentenciaL>
+
+<lista_sentenciasH> ::= <sentenciaH>
+                        | <lista_sentenciasH> <sentenciaH>
+
+<sentenciaP> ::= <titulo>
+                 | <lab>
+                 | <vals>
+
+<sentenciaB> ::= <titulo>
+                 | <ejex>
+                 | <ejey>
+                 | <titx>
+                 | <tity>
+
+<sentenciaL> ::= <titulo>
+                 | <ejex>
+                 | <ejey>
+                 | <titx>
+                 | <tity>
+
+<sentenciaH> ::= <titulo>
+                 | <vals>
+
+<titulo> ::= GTITULO DOS_PUNTOS DOS_PUNTOS CHAR IGUAL <expresion> FIN_DECLARACION PUNTO_COMA
+
+<ejex> ::= X DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CORCHETE_APERTURA <lista_expresiones> CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA
+            | X DOS_PUNTOS DOS_PUNTOS CHAR IGUAL <expresion> FIN_DECLARACION PUNTO_COMA
+
+<ejey> ::= Y DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL CORCHETE_APERTURA <lista_expresiones> CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA
+            | Y DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL <expresion> FIN_DECLARACION PUNTO_COMA
+
+<titx> ::= tX DOS_PUNTOS DOS_PUNTOS CHAR IGUAL <expresion> FIN_DECLARACION PUNTO_COMA
+
+<tity> ::= tY DOS_PUNTOS DOS_PUNTOS CHAR IGUAL <expresion> FIN_DECLARACION PUNTO_COMA
+
+<lab> ::= LABEL DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CORCHETE_APERTURA <lista_expresiones> CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA
+            | LABEL DOS_PUNTOS DOS_PUNTOS CHAR IGUAL <expresion> FIN_DECLARACION PUNTO_COMA
+
+<vals> ::= VALUES DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL CORCHETE_APERTURA <lista_expresiones> CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA
+            | VALUES DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL <expresion> FIN_DECLARACION PUNTO_COMA
+
+<print> ::= CONSOLE DOS_PUNTOS DOS_PUNTOS IMPRIMIR IGUAL <lista_expresiones> FIN_DECLARACION PUNTO_COMA
+
+<print_array> ::= CONSOLE DOS_PUNTOS DOS_PUNTOS COLUMN IGUAL <expresion> GUION MAYORQUE <expresion> FIN_DECLARACION PUNTO_COMA
+                    | CONSOLE DOS_PUNTOS DOS_PUNTOS COLUMN IGUAL <expresion> GUION MAYORQUE CORCHETE_APERTURA <lista_expresiones> CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA
+
+<operacion_aritmetica> ::= <operacion> PARENTESIS_APERTURA <expresion> COMA <expresion> PARENTESIS_CIERRE
+
+<operacion_estadistica> ::= <estadística> PARENTESIS_APERTURA <expresion> PARENTESIS_CIERRE
+                             | <estadística> PARENTESIS_APERTURA CORCHETE_APERTURA <lista_expresiones> CORCHETE_CIERRE PARENTESIS_CIERRE
+
+<estadística> ::= MEDIA
+                   | MEDIANA
+                   | MODA
+                   | VARIANZA
+                   | MAX
+                   | MIN
+
+<variable> ::= VAR DOS_PUNTOS <tipo> DOS_PUNTOS DOS_PUNTOS ID_VAR:id MENORQUE GUION <expresion> FIN_DECLARACION PUNTO_COMA
+
+<operacion> ::= SUMA
+                 | RESTA 
+                 | MULTIPLICACION
+                 | DIVISION
+                 | MODULO
+
+<array> ::= ARRAY DOS_PUNTOS <tipo> DOS_PUNTOS DOS_PUNTOS ID_ARRAY MENORQUE GUION CORCHETE_APERTURA <lista_expresiones> CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA
+            | ARRAY DOS_PUNTOS <tipo> DOS_PUNTOS DOS_PUNTOS ID_ARRAY MENORQUE GUION <expresion> FIN_DECLARACION PUNTO_COMA
+
+<tipo> ::= DOUBLE
+             | CHAR
+
+<lista_expresiones> ::= <expresion>
+                          | <lista_expresiones> COMA <expresion>
+
+<expresion> ::= ENTERO       
+                 | DECIMAL            
+                 | CADENA              
+                 | ID_VAR            
+                 | <operacion_aritmetica>
+                 | <operacion_estadistica>
+                 | ID_ARRAY

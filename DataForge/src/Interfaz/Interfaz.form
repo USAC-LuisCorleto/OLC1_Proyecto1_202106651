@@ -55,11 +55,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="itemBarPesta&#xf1;as">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Pesta&#xf1;as"/>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="itemBarEjecutar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ejecutar"/>

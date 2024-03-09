@@ -1,4 +1,3 @@
-
 import Interfaz.Interfaz;
 import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
 import javax.swing.UIManager;
