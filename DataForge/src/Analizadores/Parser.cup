@@ -271,13 +271,13 @@ tity ::= tY DOS_PUNTOS DOS_PUNTOS CHAR IGUAL expresion:val FIN_DECLARACION PUNTO
 lab ::= LABEL DOS_PUNTOS DOS_PUNTOS CHAR IGUAL CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {: 
                         RESULT = (ArrayList<String>) listaexp; :}
         | LABEL DOS_PUNTOS DOS_PUNTOS CHAR IGUAL expresion:exp FIN_DECLARACION PUNTO_COMA {:
-                        RESULT = Instrucciones.Arreglos.obtenerArray(exp.toString()); :}
+                        RESULT = (ArrayList<String>) exp; :}
 ;
 
 vals ::= VALUES DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL CORCHETE_APERTURA lista_expresiones:listaexp CORCHETE_CIERRE FIN_DECLARACION PUNTO_COMA {: 
                         RESULT = (ArrayList<String>) listaexp; :}
         | VALUES DOS_PUNTOS DOS_PUNTOS DOUBLE IGUAL expresion:exp FIN_DECLARACION PUNTO_COMA {:
-                        RESULT = Instrucciones.Arreglos.obtenerArray(exp.toString()); :}
+                        RESULT = (ArrayList<String>) exp; :}
 ;
 
 print ::= CONSOLE DOS_PUNTOS DOS_PUNTOS IMPRIMIR IGUAL lista_expresiones:listaexp FIN_DECLARACION PUNTO_COMA {: 
