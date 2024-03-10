@@ -406,6 +406,9 @@ public class Interfaz extends javax.swing.JFrame {
             Instrucciones.GráficaBarras.listaGráficas.clear();
             Instrucciones.Variables.variables.clear();
             Instrucciones.Arreglos.arreglos.clear();
+            panelGráficas.removeAll();
+            panelGráficas.revalidate(); 
+            panelGráficas.repaint();
 
             JOptionPane.showMessageDialog(null, "Consola limpiada con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (HeadlessException e) {
