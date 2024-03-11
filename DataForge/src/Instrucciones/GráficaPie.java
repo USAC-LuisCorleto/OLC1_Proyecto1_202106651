@@ -8,8 +8,9 @@ import org.jfree.data.general.DefaultPieDataset;
 public class GráficaPie {
 
     public static JFreeChart generarGráfica(String tipo, ArrayList<String> labels, ArrayList<String> values, String title) {
-        switch (tipo) {
-            case "graphPie" -> {
+        String tipoLowerCase = tipo.toLowerCase();
+        switch (tipoLowerCase) {
+            case "graphpie" -> {
                 JFreeChart chart = generarGráficaPie(labels, values, title);
                 GráficaBarras.listaGráficas.add(chart);
                 return chart;

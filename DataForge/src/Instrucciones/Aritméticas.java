@@ -12,6 +12,7 @@ public class Aritméticas {
     }
 
     public static String realizarOperación(String operacion, String izq, String der) {
+        String operacionLowerCase = operacion.toLowerCase();
         double valIzq, valDer;
         try {
             if (esNumero(izq)) {
@@ -36,24 +37,24 @@ public class Aritméticas {
             return "Error: El valor no es numérico";
         }
 
-        switch (operacion) {
-            case "SUM" -> {
+        switch (operacionLowerCase) {
+            case "sum" -> {
                 return String.valueOf(valIzq + valDer);
             }
-            case "RES" -> {
+            case "res" -> {
                 return String.valueOf(valIzq - valDer);
             }
-            case "MUL" -> {
+            case "mul" -> {
                 return String.valueOf(valIzq * valDer);
             }
-            case "DIV" -> {
+            case "div" -> {
                 if (valDer != 0) {
                     return String.valueOf(valIzq / valDer);
                 } else {
                     return "Error: División por cero";
                 }
             }
-            case "MOD" -> {
+            case "mod" -> {
                 return String.valueOf(valIzq % valDer);
             }
             default -> {

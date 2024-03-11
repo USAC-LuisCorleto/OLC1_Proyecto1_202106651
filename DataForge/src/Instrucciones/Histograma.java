@@ -16,8 +16,9 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class Histograma {
 
     public static JFreeChart generarGráfica(String tipo, String titulo, ArrayList<String> valores) {
-        switch (tipo) {
-            case "Histogram" -> {
+        String tipoLowerCase = tipo.toLowerCase();
+        switch (tipoLowerCase) {
+            case "histogram" -> {
                 JFreeChart chart = generarHistograma(titulo, valores);
                 listaGráficas.add(chart);
                 return chart;

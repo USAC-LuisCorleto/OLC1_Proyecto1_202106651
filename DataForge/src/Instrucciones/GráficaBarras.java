@@ -10,8 +10,9 @@ public class GráficaBarras {
     public static ArrayList<JFreeChart> listaGráficas = new ArrayList<>();
 
     public static JFreeChart generarGráfica(String tipo, String titulo, ArrayList<String> valoresEjeX, ArrayList<String> valoresEjeY, String tituloX, String tituloY) {
-        switch (tipo) {
-            case "graphBar" -> {
+        String tipoLowerCase = tipo.toLowerCase();
+        switch (tipoLowerCase) {
+            case "graphbar" -> {
                 JFreeChart chart = generarGráficaBarras(titulo, valoresEjeX, valoresEjeY, tituloX, tituloY);
                 listaGráficas.add(chart);
                 return chart;

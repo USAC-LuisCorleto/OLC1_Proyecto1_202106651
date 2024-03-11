@@ -9,8 +9,9 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class GráficaLíneas {
 
     public static JFreeChart generarGráfica(String tipo, String titulo, ArrayList<String> valoresEjeX, ArrayList<String> valoresEjeY, String tituloX, String tituloY) {
-        switch (tipo) {
-            case "graphLine" -> {
+        String tipoLowerCase = tipo.toLowerCase();
+        switch (tipoLowerCase) {
+            case "graphline" -> {
                 JFreeChart chart = generarGráficaLíneas(titulo, valoresEjeX, valoresEjeY, tituloX, tituloY);
                 listaGráficas.add(chart);
                 return chart;

@@ -8,23 +8,24 @@ import java.util.Map;
 public class Estadísticas {
 
     public static String realizarOperaciónEstadística(String operacion, ArrayList<String> valores) {
-        switch (operacion) {
-            case "Media" -> {
+        String operacionLowerCase = operacion.toLowerCase();
+        switch (operacionLowerCase) {
+            case "media" -> {
                 return calcularMedia(valores);
             }
-            case "Mediana" -> {
+            case "mediana" -> {
                 return calcularMediana(valores);
             }
-            case "Moda" -> {
+            case "moda" -> {
                 return calcularModa(valores);
             }
-            case "Varianza" -> {
+            case "varianza" -> {
                 return calcularVarianza(valores);
             }
-            case "Max" -> {
+            case "max" -> {
                 return calcularMaximo(valores);
             }
-            case "Min" -> {
+            case "min" -> {
                 return calcularMinimo(valores);
             }
             default -> {
